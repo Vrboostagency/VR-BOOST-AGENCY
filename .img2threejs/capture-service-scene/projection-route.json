@@ -1,0 +1,13 @@
+{
+  "route": "reference-projection",
+  "appliesTo": ["phone-screen-emissive-content"],
+  "reasoning": "The phone screen displays a specific app UI (ZARA sale card, AR floor markers, bottom nav sheet) that is the whole point of the reference -- redrawing it procedurally would not match. The reference's own screen-region pixels are cropped and projected onto the phone-screen component's UV space instead.",
+  "steps": [
+    "Cropped phone-screen region from source image (normalized box x:0.335-0.605, y:0.16-0.86) -> phone-screen-crop.png (198x372).",
+    "Ran delight_albedo.py --strength 0.35 -> phone-screen-delit.png, confidence 0.508.",
+    "bake_projected_texture.py deferred to the material-pass build step once the phone-screen mesh/UVs exist in the generated factory."
+  ],
+  "documentedLimitation": "delight_albedo confidence (0.508) is below the general 0.7 reference-PBR target threshold. Accepted anyway: this is unlit UI content (a screenshot displayed on a self-illuminated screen), not a physically-lit material -- the 'lighting' being corrected is mostly the phone's own glass reflections/gloss, not baked albedo shading. Content correctness (the actual UI pixels) does not depend on delight confidence. Camera pose was not separately solved (solve_camera_pose.py) because the screen crop is used as a near-orthogonal planar UV projection, not a 3D-aligned re-projection onto curved geometry -- the screen component is a flat inset plane, so a simple planar UV map is sufficient and a full camera-pose solve would not change the result.",
+  "cameraPoseSolve": "skipped-with-reason",
+  "cameraPoseSolveReason": "Screen target is a flat inset plane (phone-screen component), not a curved/3D surface needing perspective-correct re-projection. Planar UV mapping of the crop is geometrically sufficient."
+}

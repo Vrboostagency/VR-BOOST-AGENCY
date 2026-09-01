@@ -1,0 +1,289 @@
+{
+  "targetName": "Capture Service AR Scene",
+  "sourceImage": "Design/images/Capture service/3d model/Group 1171277420.png",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "held-smartphone-with-AR-shopping-UI, plus floating handbag callout, on a blurred retail backdrop",
+      "primaryDomain": "hybrid",
+      "formLanguage": ["geometric (phone, tag)", "organic (hand)", "structured (bag)"],
+      "structureKind": ["multi-object composite scene", "one held-object group", "two floating-callout objects", "one non-geometric backdrop"],
+      "motionPotential": ["phone: static prop, could tilt/idle-rotate", "hand: static grip pose only (no rig needed)", "bag: static floating idle bob"],
+      "materialFamilies": ["anodized metal + cover glass (phone)", "skin (hand)", "matte leather (bag)", "matte card stock (price tag, location-list chip)", "emissive UI texture (screen)"],
+      "notes": "Composite marketing image, not a single-object photo. Scoped per user instruction ('all as you see on image it will be 3d') into 4 real geometric sub-objects (phone, hand, bag, price-tag) plus one explicitly non-geometric backdrop approximation. See analysis.md Layer 1 table for full per-subject breakdown and the reject/conditional suitability split."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 0.55,
+        "componentCount": 0.6,
+        "hierarchyDepth": 0.5,
+        "repetitionDensity": 0.15,
+        "materialLayerCount": 0.55,
+        "localDetailDensity": 0.35,
+        "occlusionRisk": 0.6,
+        "actionReadinessNeed": 0.3
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 9,
+        "microFeatureGroups": 4,
+        "materialLayers": 6,
+        "repetitionSystems": 1
+      },
+      "reasoning": [
+        "4 independent macro objects (phone, hand, bag, price-tag) each with their own meso sub-parts (phone: shell/screen/notch; hand: 4-finger group + thumb + forearm stub; bag: body/handle/gusset; tag: chip/badge).",
+        "occlusionRisk is elevated because hand occludes phone's right edge/back and bag/tag backs are never shown -- single-view inference required for all four objects' hidden sides.",
+        "repetitionSystems=1: the hand's four curling fingers are a bounded repetition group (finger 2-3-4), authored as an instanced/parameterized set rather than four bespoke meshes.",
+        "Backdrop and the two UI-content layers (screen card stack, location-list card) are intentionally excluded from componentCount -- they are textures/backdrop per the suitability verdict, not sculpted geometry."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "component-zones",
+      "targetMinDetails": 10,
+      "note": "Enumerate every identity-defining small detail before authoring the spec. Each detail must map to a component.localFeatures entry or material.localOverrides entry, never prose only. Use forge/stage1_intake/build_detail_inventory.py to scan zones.",
+      "details": []
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0.0,
+      "proportions": {
+        "headUnit": 0.0,
+        "torso": 0.0,
+        "legs": 0.0,
+        "shoulderWidth": 0.0,
+        "hipWidth": 0.0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [],
+      "confidence": 0.0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "Design/images/Capture service/3d model/Group 1171277420.png"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "The rendered model matches the reference silhouette, primary proportions, visible component hierarchy, material response, and most recognizable local features for the selected fidelity tier."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta",
+      "component hierarchy depth delta",
+      "repetition density and distribution delta",
+      "material albedo/roughness/normal response delta",
+      "local feature placement and scale delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Capture Service AR Scene smartphone body hand grip phone tote bag leather price tag chip",
+    "index": {
+      "status": "rebuilt",
+      "reason": "missing",
+      "fingerprint": "ac4f0bc9028e34083dbb5d5531ae3df7699c8e7641d5f8e6d42e7492ea1be1d0"
+    },
+    "matches": [
+      {
+        "record_id": "core.shader-mapping-boxgeometry-slides-receivers-grips",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[5]",
+        "score": 3.982060806801,
+        "snippets": [
+          "... cụm lắp ráp hình chữ nhật/khối. Recognition cues: Flat-faced, roughly rectangular volume (pistol slide, receiver/frame, grip, panel) Dấu hiệu nhận diện: Khối gần chữ nhật với các mặt phẳng (khóa nòng súng lục, thân/khung súng, tay cầm, tấm ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[5]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.shader-mapping-cylindergeometry-barrels-round-components",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[4]",
+        "score": 3.752966399396,
+        "snippets": [
+          "... có tiết diện tròn dạng nòng. Recognition cues: Long uniform-cross-section round part (barrel, suppressor, muzzle brake body, cleaning rod, magazine tube) Dấu hiệu nhận diện: Bộ phận tròn có tiết diện đều dài (nòng súng, ống giảm thanh, ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[4]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.pbr-emission",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[7]",
+        "score": 2.905373184331,
+        "snippets": [
+          "Self-illuminating surface layer independent of scene lighting, used for glowing indicators or self-illum masks. Lớp bề mặt tự phát sáng độc lập với ánh sáng cảnh, dùng cho đèn báo phát sáng hoặc mặt nạ self-illum. Recognition cues: A region ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[7]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

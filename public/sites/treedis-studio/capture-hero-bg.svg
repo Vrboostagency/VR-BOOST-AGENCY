@@ -1,0 +1,33 @@
+<svg width="1920" height="746" viewBox="0 0 1920 746" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g clip-path="url(#clip0_4022_25005)">
+<rect width="1959" height="746" transform="translate(-19.5)" fill="#0A1020"/>
+<rect x="-20" y="-41" width="2108" height="846" fill="url(#pattern0_4022_25005)"/>
+<rect x="-20" y="-41" width="2108" height="846" fill="url(#paint0_linear_4022_25005)" fill-opacity="0.84"/>
+<path d="M1360.56 -28V774M1316 -28V774M1271.44 -28V774M1226.89 -28V774M1182.33 -28V774M1137.78 -28V774M1093.22 -28L1093.22 774M1048.67 -28L1048.67 774M1004.11 -28L1004.11 774M959.556 -28V774M915 -28V774M870.444 -28V774M825.889 -28V774M781.333 -28L781.333 774M736.778 -28V774M692.222 -28L692.222 774M647.667 -28L647.667 774M603.111 -28L603.111 774M558.556 -28L558.556 774M514 -28V774M469.444 -28V774M424.889 -28V774M380.333 -28L380.333 774M335.778 -28L335.778 774M291.222 -28L291.222 774M246.667 -28L246.667 774M202.111 -28L202.111 774M157.556 -28L157.556 774M113 -28V774M68.4444 -28V774M23.8889 -28V774M-20.6667 -28V774M-65.2222 -28V774M-109.778 -28V774M1405.11 -28V774M1449.67 -28V774M1494.22 -28V774M1538.78 -28V774M1583.33 -28V774M1627.89 -28V774M1672.44 -28V774M1717 -28V774M1761.56 -28V774M1806.11 -28V774M1850.67 -28V774M1895.22 -28V774M1939.78 -28V774M-130.941 -28H2050.05M-130.941 16.5556H2050.05M-130.941 61.1111H2050.05M-130.941 105.667H2050.05M-130.941 150.222H2050.05M-130.941 194.778H2050.05M-130.941 239.333H2050.05M-130.941 283.889H2050.05M-130.941 328.444H2050.05M-130.941 373H2050.05M-130.941 417.556H2050.05M-130.941 462.111H2050.05M-130.941 506.667H2050.05M-130.941 551.222H2050.05M-130.941 595.778H2050.05M-130.941 640.333H2050.05M-130.941 684.889H2050.05M-130.941 729.444H2050.05M-130.941 774H2050.05" stroke="url(#paint1_radial_4022_25005)" stroke-opacity="0.07" stroke-width="0.5"/>
+<g filter="url(#filter0_f_4022_25005)">
+<circle cx="297.784" cy="695.784" r="150.784" fill="#2055FF"/>
+</g>
+</g>
+<defs>
+<pattern id="pattern0_4022_25005" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#capture-hero-bg-texture" transform="matrix(0.000316957 0 0 0.00078977 0 -0.00031958)"/>
+</pattern>
+<filter id="filter0_f_4022_25005" x="-396.367" y="1.63263" width="1388.3" height="1388.3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="271.684" result="effect1_foregroundBlur_4022_25005"/>
+</filter>
+<linearGradient id="paint0_linear_4022_25005" x1="176.229" y1="416.734" x2="982.029" y2="416.922" gradientUnits="userSpaceOnUse">
+<stop offset="0.257053" stop-color="#0A1020"/>
+<stop offset="1" stop-color="#0A1020" stop-opacity="0"/>
+</linearGradient>
+<radialGradient id="paint1_radial_4022_25005" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1489 300.5) rotate(177.338) scale(1098.99 2317.13)">
+<stop stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="white"/>
+</radialGradient>
+<clipPath id="clip0_4022_25005">
+<rect width="1959" height="746" fill="white" transform="translate(-19.5)"/>
+</clipPath>
+<image id="capture-hero-bg-texture" width="3155" height="1267" preserveAspectRatio="none" xlink:href="/sites/treedis-studio/capture-hero-bg.png"/>
+</defs>
+</svg>

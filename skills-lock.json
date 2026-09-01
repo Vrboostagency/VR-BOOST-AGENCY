@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "awwwards-animations": {
+      "source": "DevMartinese/awwwards-animations-skill",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "10574282bd24f42072059efa58cfce6ff3a80347505eb191af55544426fe4c3a"
+    },
+    "clone-website": {
+      "source": "jcodesmore/ai-website-cloner-template",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/clone-website/SKILL.md",
+      "computedHash": "8e3db2da75ed7ef05200ab2b3b5da462f0072164d9824963f27f39ba6adf6029"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "93f53fd1c0352d3d7ec17b8f73d7351bf76f4821e55d123c9d2abc2c53ba48e4"
+    }
+  }
+}

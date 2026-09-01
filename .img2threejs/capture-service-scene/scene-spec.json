@@ -1,0 +1,3405 @@
+{
+  "targetName": "Capture Service AR Scene",
+  "targetId": "capture-service-ar-scene",
+  "schemaVersion": "2.1",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "bend",
+      "boolean cut",
+      "edge loop",
+      "surface normal",
+      "displacement"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "normal map",
+      "bump map",
+      "ambient occlusion",
+      "cavity dirt",
+      "edge wear",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "rim light",
+      "HDRI/environment reflection",
+      "contact shadow"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "Design/images/Capture service/3d model/Group 1171277420.png",
+  "referenceCamera": {
+    "solved": false,
+    "fovDegrees": 35.0,
+    "aspect": 1.3766,
+    "orientation": {
+      "yaw": 0.0,
+      "pitch": -2.0,
+      "roll": 0.0
+    },
+    "positionHint": [
+      0.0,
+      0.15,
+      3.4
+    ],
+    "note": "Not solved with solve_camera_pose.py (multi-object composite, no single rigid subject to fit camera to). Approximated from the reference's near-eye-level, slight-downward framing. Confirm by overlay review during blockout."
+  },
+  "suitability": "conditional",
+  "scores": {
+    "object_isolation": 0.55,
+    "silhouette_readability": 0.75,
+    "depth_inference": 0.45,
+    "primitive_decomposition": 0.7,
+    "material_procedurality": 0.6,
+    "occlusion_risk": 0.6,
+    "interaction_fit": 0.3
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "held-smartphone-with-AR-shopping-UI, plus floating handbag callout, on a blurred retail backdrop",
+      "primaryDomain": "hybrid",
+      "formLanguage": [
+        "geometric (phone, tag)",
+        "organic (hand)",
+        "structured (bag)"
+      ],
+      "structureKind": [
+        "multi-object composite scene",
+        "one held-object group",
+        "two floating-callout objects",
+        "one non-geometric backdrop"
+      ],
+      "motionPotential": [
+        "phone: static prop, idle tilt",
+        "hand: static grip pose, no rig",
+        "bag: static floating idle bob",
+        "tag: rides with bag"
+      ],
+      "materialFamilies": [
+        "anodized metal + cover glass (phone)",
+        "skin (hand)",
+        "matte leather (bag)",
+        "matte card stock (price tag)",
+        "emissive UI texture (screen, projected)"
+      ],
+      "notes": "Composite marketing image, not a single-object photo (see analysis.md). Scoped per explicit user instruction into 4 real geometric macro objects (phone, hand, bag, price-tag) sharing one root group, plus one explicitly non-geometric backdrop approximation built outside this spec's componentTree."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 0.55,
+        "componentCount": 0.6,
+        "hierarchyDepth": 0.5,
+        "repetitionDensity": 0.2,
+        "materialLayerCount": 0.55,
+        "localDetailDensity": 0.35,
+        "occlusionRisk": 0.6,
+        "actionReadinessNeed": 0.3
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 11,
+        "microFeatureGroups": 5,
+        "materialLayers": 7,
+        "repetitionSystems": 1
+      },
+      "reasoning": [
+        "4 independent macro objects (phone, hand, bag, price-tag) each with their own meso sub-parts.",
+        "occlusionRisk elevated: hand occludes phone's right edge/back; bag/tag backs never shown -- single-view inference for all four.",
+        "repetitionSystems=1: hand's three curling fingers (index/middle/ring) authored as one parameterized repetition group, not four bespoke meshes.",
+        "Backdrop and the two flat UI-content layers (screen card stack, location-list card) are intentionally excluded from componentTree -- textures/backdrop per the suitability verdict, not sculpted geometry."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "4 macro objects with real meso sub-parts, one bounded repetition system (fingers), and materials with local overrides (skin knuckle sheen, screen emissive region, badge accent) place this at the complex tier -- not ultra-complex, since no single object here carries CS2-grade micro-detail density."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      "Phone back shell and right-edge button layout (occluded by hand/angle) -- approximated as a plain slab back, flagged as inference.",
+      "Hand's dorsal (back) side and exact finger joint angles -- approximated with a generic curl pose, not measured.",
+      "Handbag hardware (clasp/zipper/stitching) -- below legible resolution, approximated as unadorned matte body.",
+      "Mall backdrop identity/architecture -- explicitly NOT reconstructed as 3D geometry; approximated as a soft blurred backdrop plane."
+    ],
+    "detailInventory": {
+      "scanMethod": "component-zones",
+      "targetMinDetails": 10,
+      "note": "See detail-inventory.json for the full zone scan.",
+      "details": []
+    },
+    "anatomy": {
+      "applies": true,
+      "styleHeads": 0.0,
+      "proportions": {
+        "headUnit": 0.0,
+        "torso": 0.0,
+        "legs": 0.0,
+        "shoulderWidth": 0.0,
+        "hipWidth": 0.0
+      },
+      "pose": {
+        "type": "static-grip",
+        "jointAngles": {
+          "wristFlexion": 15,
+          "fingerCurlIndex": 70,
+          "fingerCurlMiddle": 75,
+          "fingerCurlRing": 65,
+          "thumbAbduction": 25
+        }
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [
+        "fingertip pads visible wrapping phone's top-left edge",
+        "thumb resting near bottom-left of screen",
+        "forearm stub exits frame bottom-right"
+      ],
+      "confidence": 0.55,
+      "note": "Hand only, no head/face/torso in frame -- this is a partial-figure (hand+forearm-stub) reconstruction, not a full character build. anatomy fields beyond pose/features are not applicable."
+    }
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "The rendered scene matches the reference's four-object composition (phone-in-hand, handbag+tag), their relative placement, silhouettes, proportions, hold angle, and local color palette.",
+      "Screen content is a projected/baked crop of the reference's own UI pixels, not a procedural re-creation of the app design.",
+      "Backdrop reads as a soft out-of-focus retail space without claiming architectural accuracy."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 4,
+      "mesoComponents": 11,
+      "microFeatureGroups": 5,
+      "materialLayers": 7,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-composition",
+        "name": "Four-object composition and relative placement",
+        "required": true,
+        "qualityCriteria": [
+          "Phone-in-hand, handbag, and price-tag occupy the same relative screen-space regions and scale relationships as the reference."
+        ],
+        "evidenceRefs": [
+          "full-scene"
+        ],
+        "failureModes": [
+          "objects placed arbitrarily instead of matching reference layout",
+          "scale relationships between phone/hand/bag are wrong"
+        ]
+      },
+      {
+        "id": "phone-structure",
+        "name": "Phone body, screen, and notch structure",
+        "required": true,
+        "qualityCriteria": [
+          "Rounded-rect slab body, correct screen aspect (~19.5:9), front-camera notch positioned top-center."
+        ],
+        "evidenceRefs": [
+          "phone-region"
+        ],
+        "failureModes": [
+          "phone reads as a generic box instead of a phone",
+          "screen aspect ratio wrong",
+          "notch missing or mispositioned"
+        ]
+      },
+      {
+        "id": "hand-grip",
+        "name": "Hand grip silhouette and attachment",
+        "required": true,
+        "qualityCriteria": [
+          "Fingers wrap the phone's top-left edge with visible contact, no mid-air fingers, thumb positioned near bottom-left of screen."
+        ],
+        "evidenceRefs": [
+          "hand-region"
+        ],
+        "failureModes": [
+          "fingers float away from phone body",
+          "grip reads as generic fist instead of a phone-holding pose"
+        ]
+      },
+      {
+        "id": "bag-tag-structure",
+        "name": "Handbag body, handle, and price-tag",
+        "required": true,
+        "qualityCriteria": [
+          "Trapezoidal tapered body with semicircular handle loop; price-tag chip with red corner badge overlapping its top-right corner."
+        ],
+        "evidenceRefs": [
+          "bag-region"
+        ],
+        "failureModes": [
+          "bag reads as a plain box",
+          "handle floats disconnected from body",
+          "tag/badge relationship lost"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Phone: anodized-metal-edge + glossy-glass-screen distinct from matte skin, matte leather, and matte card materials.",
+          "Screen carries a projected/emissive UI texture, not a flat gray plane."
+        ],
+        "evidenceRefs": [
+          "full-scene"
+        ],
+        "failureModes": [
+          "everything looks like flat plastic",
+          "screen has no content / generic gray"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta per object",
+      "relative placement/scale delta between the 4 objects",
+      "material albedo/roughness delta",
+      "hold-angle and grip-attachment delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a complex scene.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap.",
+      "Do not claim the mall backdrop is reconstructed 3D architecture -- it is an explicit non-geometric approximation."
+    ]
+  },
+  "qualityTargets": {
+    "targetFidelity": 0.7,
+    "mustMatch": [
+      "four-object composition and relative placement",
+      "phone/hand/bag/tag silhouettes and proportions",
+      "reference color palette per object",
+      "screen carries projected reference UI content"
+    ],
+    "niceToHave": [
+      "micro skin/leather surface variation",
+      "secondary rim lighting matching the reference's soft top-light"
+    ],
+    "fpsTarget": 60,
+    "reviewViewpoints": [
+      "front (reference-matched)",
+      "three-quarter-left (self-consistency)",
+      "three-quarter-right (self-consistency)",
+      "top-down (self-consistency)"
+    ]
+  },
+  "selfCorrectLoop": {
+    "enabled": true,
+    "visualAcceptance": {
+      "reviewer": "ai-vision",
+      "threshold": 0.7,
+      "comparisonArtifactRequired": true,
+      "layerScoresRequired": true,
+      "codePixelDiffIsAcceptanceAuthority": false,
+      "scoringRule": "AI vision inspects a side-by-side reference/render sheet and scores the current pass 0-1. Pixel-diff assists diagnostics but does not approve a pass.",
+      "requiredLayerScores": [
+        "silhouetteProportion",
+        "componentStructure",
+        "formDetail",
+        "materialSurface",
+        "lightingCamera"
+      ],
+      "featureReviewPolicy": {
+        "enabled": true,
+        "reviewUnit": "semantic-subsystem",
+        "maxCriticalFeaturesPerPass": 5,
+        "maxImportantFeaturesPerPass": 3,
+        "criticalDefaultThreshold": 0.75,
+        "importantAverageThreshold": 0.6,
+        "adaptiveEscalation": true,
+        "singleImagePairOnly": true,
+        "selectionRule": "Score the 5 featureGroups above; group repeated fingers instead of scoring each individually."
+      }
+    },
+    "reviewAfterPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "allowedActions": [
+      "continue",
+      "refine-spec",
+      "refine-code",
+      "request-input",
+      "stop"
+    ],
+    "specRefineTriggers": [
+      "missing component",
+      "wrong primitive family",
+      "wrong proportions",
+      "material layer under-specified",
+      "local feature not traceable to viewEvidence",
+      "reference ambiguity discovered during implementation"
+    ],
+    "codeRefineTriggers": [
+      "spec is adequate but generated geometry/material does not match",
+      "browser render differs from reference",
+      "performance budget exceeded",
+      "lighting hides geometry or material response"
+    ],
+    "stopCriteria": [
+      "target fidelity reached or user accepts current approximation",
+      "remaining gaps require new reference images (phone back, hand back, bag back) or manual art"
+    ],
+    "screenshotPolicy": {
+      "requiredForPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass"
+      ],
+      "preferredCapture": "in-app-browser-screenshot",
+      "fallbackCapture": "user-supplied-screenshot-path",
+      "minimumEvidence": "Each visual pass needs a reference image, rendered screenshot, side-by-side comparison sheet, AI vision score, layer scores, and critique before choosing continue.",
+      "reviewPairRule": "Compare the reference frame against the front render; three-quarter/top-down renders are self-consistency checks only (no reference angle exists for them).",
+      "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+    }
+  },
+  "featureReviewTargets": [
+    {
+      "id": "overall-composition",
+      "name": "Four-object composition and relative placement",
+      "tier": "critical",
+      "passIds": [
+        "blockout"
+      ],
+      "minimumScore": 0.75,
+      "mustPass": true,
+      "componentRefs": [
+        "root"
+      ],
+      "evidenceRefs": [
+        "full-scene"
+      ]
+    },
+    {
+      "id": "phone-structure",
+      "name": "Phone body/screen/notch structure",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "form-refinement"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "phone-body"
+      ],
+      "evidenceRefs": [
+        "phone-region"
+      ]
+    },
+    {
+      "id": "hand-grip",
+      "name": "Hand grip silhouette and attachment",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "form-refinement"
+      ],
+      "minimumScore": 0.75,
+      "mustPass": true,
+      "componentRefs": [
+        "hand"
+      ],
+      "evidenceRefs": [
+        "hand-region"
+      ]
+    },
+    {
+      "id": "bag-tag-structure",
+      "name": "Handbag body/handle/price-tag",
+      "tier": "important",
+      "passIds": [
+        "structural-pass",
+        "form-refinement"
+      ],
+      "minimumScore": 0.65,
+      "mustPass": false,
+      "componentRefs": [
+        "handbag",
+        "price-tag"
+      ],
+      "evidenceRefs": [
+        "bag-region"
+      ]
+    },
+    {
+      "id": "surface-material-response",
+      "name": "Surface material response",
+      "tier": "critical",
+      "passIds": [
+        "material-pass",
+        "surface-pass"
+      ],
+      "minimumScore": 0.7,
+      "mustPass": true,
+      "componentRefs": [
+        "root"
+      ],
+      "evidenceRefs": [
+        "full-scene"
+      ]
+    }
+  ],
+  "sculptPipeline": {
+    "passGateMode": "locked-sequential",
+    "passOrder": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "currentPass": "blockout",
+    "completedPasses": [],
+    "lastCompletedPass": "",
+    "blockedReason": "blockout requires a browser screenshot and self-correction review before structural-pass unlocks",
+    "nextRequiredEvidence": [
+      "blockout browser render screenshot",
+      "side-by-side reference/render comparison sheet",
+      "AI vision score >= 0.7 with layer scores",
+      "critical feature scores meeting their thresholds",
+      "reviewHistory entry for blockout with action=continue"
+    ]
+  },
+  "assumptions": [
+    "Phone modeled as a generic modern slab smartphone (no brand-specific button/port layout claimed) since back/edges are occluded.",
+    "Hand pose approximated as a generic right-hand phone grip; exact joint angles are inference, not measurement.",
+    "Handbag hardware omitted (unadorned matte body) -- below legible resolution in the source.",
+    "Mall backdrop is an explicit non-geometric approximation (blurred backdrop plane), not reconstructed architecture.",
+    "Screen UI content and the floating location-list card are reproduced via a projected/baked crop of the reference's own pixels, de-lit, not redrawn procedurally."
+  ],
+  "risks": [
+    "Single-view reconstruction: no back/side reference exists for phone, hand, or bag -- non-frontal turntable angles are self-consistency checks only, not reference-verified.",
+    "Backdrop fidelity is capped by design (soft blur approximation); it will not read as an accurate depiction of a specific mall."
+  ],
+  "coordinateFrame": {
+    "front": "camera-facing side in the reference image",
+    "up": "world up / image up direction",
+    "scaleReference": "unit = 1 real-world meter; phone height ~0.15 units, adjust after first browser render"
+  },
+  "silhouette": {
+    "boundingShape": "wide landscape group: bag (upper-left) + phone-in-hand (center, tall) + price-tag (overlapping bag) within a ~1.38:1 frame",
+    "aspectRatios": [
+      "phone body ~1:2.05 (w:h)",
+      "handbag ~1.1:1 (w:h) including handle loop",
+      "overall composition ~1.38:1"
+    ],
+    "symmetry": "asymmetric composition; phone itself bilaterally symmetric about its long axis (broken by notch), bag bilaterally symmetric about its vertical centerline",
+    "dominantCurves": [
+      "phone corner radii (large, ~14% of short-edge)",
+      "bag handle semicircular loop",
+      "bag body gentle top-to-bottom taper",
+      "fingers' curl arcs over phone edge"
+    ],
+    "negativeSpaces": [
+      "gap between bag's handle loop and its body",
+      "gap between hand's curled fingers and palm (open grip pocket)"
+    ],
+    "landmarks": [
+      "phone front-camera notch (top-center)",
+      "bag handle apex",
+      "price-tag/badge overlap corner",
+      "fingertip contact row along phone's top-left edge"
+    ]
+  },
+  "viewEvidence": [
+    {
+      "id": "full-scene",
+      "view": "primary",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1.0,
+        "height": 1.0,
+        "units": "normalized"
+      },
+      "observations": [
+        "Four-object marketing composite: floating handbag+tag (upper-left), floating location-list UI card (upper-right, excluded from geometry), phone-in-hand (center), blurred mall backdrop (full frame, behind)."
+      ],
+      "confidence": 0.6
+    },
+    {
+      "id": "phone-region",
+      "view": "primary",
+      "imageRegion": {
+        "x": 0.3,
+        "y": 0.05,
+        "width": 0.34,
+        "height": 0.85,
+        "units": "normalized"
+      },
+      "observations": [
+        "Slab phone body, ~15-20deg tilt, front-camera notch top-center, cover glass showing app UI, held screen-toward-viewer."
+      ],
+      "confidence": 0.75
+    },
+    {
+      "id": "hand-region",
+      "view": "primary",
+      "imageRegion": {
+        "x": 0.28,
+        "y": 0.42,
+        "width": 0.38,
+        "height": 0.55,
+        "units": "normalized"
+      },
+      "observations": [
+        "Right hand, four fingers curling over phone's top-left edge (fingertip pads visible on front face left margin), thumb near bottom-left of screen, forearm exits frame bottom-right."
+      ],
+      "confidence": 0.6
+    },
+    {
+      "id": "bag-region",
+      "view": "primary",
+      "imageRegion": {
+        "x": 0.02,
+        "y": 0.08,
+        "width": 0.3,
+        "height": 0.42,
+        "units": "normalized"
+      },
+      "observations": [
+        "Trapezoidal tote body tapering toward top, semicircular top handle, own drop shadow; white price-tag chip '$145' with red '-24%' corner badge overlapping bag's lower body."
+      ],
+      "confidence": 0.65
+    },
+    {
+      "id": "backdrop-region",
+      "view": "primary",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1.0,
+        "height": 1.0,
+        "units": "normalized"
+      },
+      "observations": [
+        "Deep-blurred mall interior: glossy floor reflections, storefront glass both sides, two silhouetted figures, ceiling light strip. Explicit non-geometric approximation target."
+      ],
+      "confidence": 0.5
+    }
+  ],
+  "componentTree": [
+    {
+      "id": "root",
+      "name": "Capture Service AR Scene",
+      "level": "macro",
+      "role": "scene-root",
+      "importance": 1.0,
+      "confidence": 1.0,
+      "primitive": "group",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Pure organizational pivot; no geometry of its own.",
+      "geometryDescriptor": {
+        "topologyIntent": "empty group",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "none",
+        "normalStrategy": "none"
+      },
+      "parent": null,
+      "attachment": null,
+      "dimensions": {
+        "width": 0,
+        "height": 0,
+        "depth": 0,
+        "units": "relative",
+        "confidence": 1.0
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "root",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 1.0
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": true,
+          "notes": "no collider needed on scene root"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "root",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": null,
+      "materialLayers": [],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0,
+        "microRoughness": 0,
+        "bumpAmplitude": 0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-scene"
+      ],
+      "details": [],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "phone-body",
+      "name": "Phone body shell",
+      "level": "macro",
+      "role": "body",
+      "importance": 1.0,
+      "confidence": 0.8,
+      "primitive": "roundedBox",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Manufactured slab product; hard-surface rounded-rect extrusion, not an organic blend.",
+      "geometryDescriptor": {
+        "topologyIntent": "rounded-rect slab, large corner radius (~14% short edge), thin depth",
+        "edgeTreatment": {
+          "type": "bevel-chamfer-blend",
+          "bevelRadius": 0.006,
+          "segments": 6
+        },
+        "deformationStack": [],
+        "uvStrategy": "box-projected UVs per face",
+        "normalStrategy": "vertex normals with per-face flat shading on body, smooth on rounded edges"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 0.071,
+        "height": 0.148,
+        "depth": 0.0078,
+        "units": "meters",
+        "confidence": 0.6
+      },
+      "transform": {
+        "position": [
+          0.02,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          -0.03,
+          0.05,
+          0.28
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "held-prop",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": false,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [
+          {
+            "id": "grip-socket",
+            "localPosition": [
+              -0.03,
+              0.0,
+              0.003
+            ],
+            "note": "hand fingers attach here"
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "simple box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "phone-body",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "phone-metal-edge"
+        }
+      },
+      "material": "phone-metal-edge",
+      "materialLayers": [
+        "phone-metal-edge"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [
+        "phone-screen seam at front face inset"
+      ],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.25,
+        "microRoughness": 0.1,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "brushed-metal micro-anisotropy on edge band only",
+        "displacementPattern": "none",
+        "occlusionPattern": "corner AO at rounded edges",
+        "edgeWearPattern": "none observed",
+        "notes": "Back shell face and right-edge buttons are occluded/inferred -- flat plain slab used there."
+      },
+      "evidenceRefs": [
+        "phone-region"
+      ],
+      "details": [
+        "camera-notch (see phone-notch component)"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "phone-screen",
+      "name": "Phone screen (cover glass + emissive UI)",
+      "level": "meso",
+      "role": "display",
+      "importance": 0.9,
+      "confidence": 0.75,
+      "primitive": "planeInset",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Flat inset panel bounded by the body's front-face bezel.",
+      "geometryDescriptor": {
+        "topologyIntent": "thin inset plane, slightly recessed from body front face",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "planar UVs matched 1:1 to projected screen-crop texture",
+        "normalStrategy": "flat"
+      },
+      "parent": "phone-body",
+      "attachment": {
+        "parentSocket": "phone-body-front-face",
+        "localStart": [
+          -0.03,
+          -0.062,
+          0.0041
+        ],
+        "localEnd": [
+          0.03,
+          0.062,
+          0.0041
+        ],
+        "contactType": "flush",
+        "embedDepth": 0.0002,
+        "gapTolerance": 0.0
+      },
+      "dimensions": {
+        "width": 0.062,
+        "height": 0.13,
+        "depth": 0.0004,
+        "units": "meters",
+        "confidence": 0.65
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0.0041
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-decoration",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.7
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": true,
+          "notes": "no physical collider needed"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "phone-body",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "phone-screen-glass"
+        }
+      },
+      "material": "phone-screen-glass",
+      "materialLayers": [
+        "phone-screen-glass",
+        "phone-screen-emissive-content"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "ZARA SALE promo card (upper-mid screen)",
+        "bottom nav sheet: 'ZARA 16m to go' bar with close (X) button"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.05,
+        "microRoughness": 0.02,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "none (glass)",
+        "displacementPattern": "none",
+        "occlusionPattern": "none",
+        "edgeWearPattern": "none",
+        "notes": "Emissive content layer is a de-lit projected crop of the reference's own screen region, baked into the screen UV -- not a procedurally redrawn UI."
+      },
+      "evidenceRefs": [
+        "phone-region"
+      ],
+      "details": [],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "phone-notch",
+      "name": "Front-camera notch",
+      "level": "micro",
+      "role": "detail",
+      "importance": 0.4,
+      "confidence": 0.6,
+      "primitive": "capsule",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Small hard-surface capsule cutout at top bezel.",
+      "geometryDescriptor": {
+        "topologyIntent": "small flattened capsule, embedded at top-center bezel",
+        "edgeTreatment": {
+          "type": "bevel-chamfer-blend",
+          "bevelRadius": 0.0006,
+          "segments": 4
+        },
+        "deformationStack": [],
+        "uvStrategy": "planar",
+        "normalStrategy": "smooth"
+      },
+      "parent": "phone-body",
+      "attachment": {
+        "parentSocket": "phone-body-top-bezel-center",
+        "localStart": [
+          -0.006,
+          0.07,
+          0.0039
+        ],
+        "localEnd": [
+          0.006,
+          0.07,
+          0.0039
+        ],
+        "contactType": "embed",
+        "embedDepth": 0.0003,
+        "gapTolerance": 0.0
+      },
+      "dimensions": {
+        "width": 0.012,
+        "height": 0.003,
+        "depth": 0.0006,
+        "units": "meters",
+        "confidence": 0.55
+      },
+      "transform": {
+        "position": [
+          0,
+          0.07,
+          0.0039
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-decoration",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.6
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": true,
+          "notes": "cosmetic only"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "phone-body",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "phone-notch-black"
+        }
+      },
+      "material": "phone-notch-black",
+      "materialLayers": [
+        "phone-notch-black"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.3,
+        "microRoughness": 0.15,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "none",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact AO against bezel",
+        "edgeWearPattern": "none",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "phone-region"
+      ],
+      "details": [],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "hand",
+      "name": "Gripping hand",
+      "level": "macro",
+      "role": "character-part",
+      "importance": 0.95,
+      "confidence": 0.6,
+      "primitive": "compound",
+      "topologyClass": "organic-form",
+      "topologyRationale": "Organic, continuous-surface anatomy; not decomposable into hard-surface primitives without reading as blocky.",
+      "geometryDescriptor": {
+        "topologyIntent": "stylized low-to-mid-poly hand: palm mass + 4 finger tubes + thumb + forearm capsule stub",
+        "edgeTreatment": {
+          "type": "bevel-chamfer-blend",
+          "bevelRadius": 0.003,
+          "segments": 8
+        },
+        "deformationStack": [
+          "finger curl bend per repetition instance"
+        ],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth vertex normals"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentSocket": "phone-body.grip-socket",
+        "localStart": [
+          -0.045,
+          -0.02,
+          0.0
+        ],
+        "localEnd": [
+          -0.005,
+          0.06,
+          0.006
+        ],
+        "contactType": "wrap",
+        "embedDepth": 0.001,
+        "gapTolerance": 0.001
+      },
+      "dimensions": {
+        "width": 0.1,
+        "height": 0.16,
+        "depth": 0.06,
+        "units": "meters",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          -0.005,
+          -0.03,
+          -0.01
+        ],
+        "rotation": [
+          0,
+          0.1,
+          0.2
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-grip",
+        "pivot": {
+          "mode": "root-bone",
+          "localPosition": [
+            0,
+            -0.08,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.55
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": false,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": true,
+          "notes": "cosmetic, no physical interaction planned"
+        },
+        "constraints": [
+          {
+            "type": "fixed-to-parent-socket",
+            "target": "phone-body.grip-socket"
+          }
+        ],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "hand",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "skin"
+        }
+      },
+      "material": "skin",
+      "materialLayers": [
+        "skin"
+      ],
+      "deformations": [],
+      "joints": [
+        "wrist-to-forearm"
+      ],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.45,
+        "microRoughness": 0.2,
+        "bumpAmplitude": 0.02,
+        "normalPattern": "subtle knuckle/crease relief",
+        "displacementPattern": "none",
+        "occlusionPattern": "AO between curled fingers and palm",
+        "edgeWearPattern": "none",
+        "notes": "Back/dorsal side of hand never shown -- generic anatomical inference used there."
+      },
+      "evidenceRefs": [
+        "hand-region"
+      ],
+      "details": [],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "hand-palm",
+      "name": "Palm mass",
+      "level": "meso",
+      "role": "structure",
+      "importance": 0.6,
+      "confidence": 0.55,
+      "primitive": "compound",
+      "topologyClass": "organic-form",
+      "topologyRationale": "Continuous organic mass.",
+      "geometryDescriptor": {
+        "topologyIntent": "flattened ellipsoid mass behind the phone's left edge",
+        "edgeTreatment": {
+          "type": "bevel-chamfer-blend",
+          "bevelRadius": 0.004,
+          "segments": 6
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth"
+      },
+      "parent": "hand",
+      "attachment": {
+        "parentSocket": "hand-root",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0
+        ],
+        "contactType": "embed",
+        "embedDepth": 0.0,
+        "gapTolerance": 0.0
+      },
+      "dimensions": {
+        "width": 0.05,
+        "height": 0.07,
+        "depth": 0.035,
+        "units": "meters",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-grip",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "sphere",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": true,
+          "notes": ""
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "hand",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "skin"
+        }
+      },
+      "material": "skin",
+      "materialLayers": [
+        "skin"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.45,
+        "microRoughness": 0.2,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "hand-region"
+      ],
+      "details": [],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "hand-thumb",
+      "name": "Thumb",
+      "level": "meso",
+      "role": "structure",
+      "importance": 0.55,
+      "confidence": 0.55,
+      "primitive": "capsule",
+      "topologyClass": "organic-form",
+      "topologyRationale": "Continuous tapered tube.",
+      "geometryDescriptor": {
+        "topologyIntent": "tapered capsule, two-segment bend toward screen bottom-left",
+        "edgeTreatment": {
+          "type": "bevel-chamfer-blend",
+          "bevelRadius": 0.002,
+          "segments": 6
+        },
+        "deformationStack": [
+          "single mid-joint bend ~20deg"
+        ],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth"
+      },
+      "parent": "hand",
+      "attachment": {
+        "parentSocket": "hand-palm",
+        "localStart": [
+          0.02,
+          -0.01,
+          0.01
+        ],
+        "localEnd": [
+          0.045,
+          -0.04,
+          0.02
+        ],
+        "contactType": "socket",
+        "embedDepth": 0.004,
+        "gapTolerance": 0.0
+      },
+      "dimensions": {
+        "width": 0.012,
+        "height": 0.045,
+        "depth": 0.012,
+        "units": "meters",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          0.02,
+          -0.01,
+          0.01
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.35
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-grip",
+        "pivot": {
+          "mode": "root-bone",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": false,
+          "bend": true,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": true,
+          "notes": ""
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "hand",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "skin"
+        }
+      },
+      "material": "skin",
+      "materialLayers": [
+        "skin"
+      ],
+      "deformations": [],
+      "joints": [
+        "thumb-base-joint"
+      ],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.45,
+        "microRoughness": 0.2,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "hand-region"
+      ],
+      "details": [],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "hand-fingers",
+      "name": "Curling fingers (index/middle/ring)",
+      "level": "meso",
+      "role": "structure",
+      "importance": 0.65,
+      "confidence": 0.55,
+      "primitive": "capsule",
+      "topologyClass": "organic-form",
+      "topologyRationale": "Repeated tapered tube family, bent uniformly over the phone edge.",
+      "geometryDescriptor": {
+        "topologyIntent": "3x tapered two-segment capsule fingers curling over the phone's top-left edge",
+        "edgeTreatment": {
+          "type": "bevel-chamfer-blend",
+          "bevelRadius": 0.0015,
+          "segments": 6
+        },
+        "deformationStack": [
+          "per-instance curl bend, angle varies by repetition index"
+        ],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth"
+      },
+      "parent": "hand",
+      "attachment": {
+        "parentSocket": "phone-body.grip-socket",
+        "localStart": [
+          -0.033,
+          -0.01,
+          0.002
+        ],
+        "localEnd": [
+          -0.033,
+          0.02,
+          -0.01
+        ],
+        "contactType": "wrap",
+        "embedDepth": 0.0015,
+        "gapTolerance": 0.0005
+      },
+      "dimensions": {
+        "width": 0.01,
+        "height": 0.05,
+        "depth": 0.01,
+        "units": "meters",
+        "confidence": 0.5
+      },
+      "transform": {
+        "position": [
+          -0.033,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-grip",
+        "pivot": {
+          "mode": "root-bone",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "confidence": 0.5
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": false,
+          "bend": true,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": true,
+          "notes": ""
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "hand",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "skin"
+        }
+      },
+      "material": "skin",
+      "materialLayers": [
+        "skin"
+      ],
+      "deformations": [],
+      "joints": [
+        "finger-base-joint x3"
+      ],
+      "seams": [],
+      "localFeatures": [
+        "fingertip contact row visible along phone top-left edge"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.45,
+        "microRoughness": 0.18,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "knuckle crease at bend",
+        "displacementPattern": "none",
+        "occlusionPattern": "AO where fingers overlap phone edge",
+        "edgeWearPattern": "none",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "hand-region"
+      ],
+      "details": [],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "hand-forearm-stub",
+      "name": "Forearm stub",
+      "level": "meso",
+      "role": "structure",
+      "importance": 0.3,
+      "confidence": 0.5,
+      "primitive": "cylinder",
+      "topologyClass": "organic-form",
+      "topologyRationale": "Simple tapered cylinder, exits frame so full form is not needed.",
+      "geometryDescriptor": {
+        "topologyIntent": "short tapered cylinder exiting toward camera-bottom-right, cut off (not capped visibly)",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 8
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated procedural coordinates",
+        "normalStrategy": "smooth"
+      },
+      "parent": "hand",
+      "attachment": {
+        "parentSocket": "hand-palm",
+        "localStart": [
+          0,
+          -0.06,
+          0
+        ],
+        "localEnd": [
+          0.03,
+          -0.14,
+          0.02
+        ],
+        "contactType": "socket",
+        "embedDepth": 0.006,
+        "gapTolerance": 0.0
+      },
+      "dimensions": {
+        "width": 0.045,
+        "height": 0.09,
+        "depth": 0.045,
+        "units": "meters",
+        "confidence": 0.45
+      },
+      "transform": {
+        "position": [
+          0,
+          -0.06,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0.3
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-decoration",
+        "pivot": {
+          "mode": "root-bone",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.45
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": true,
+          "notes": ""
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "hand",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "skin"
+        }
+      },
+      "material": "skin",
+      "materialLayers": [
+        "skin"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.45,
+        "microRoughness": 0.2,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": "Cut off out-of-frame in reference; length here is a stylistic choice, not measured."
+      },
+      "evidenceRefs": [
+        "hand-region"
+      ],
+      "details": [],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "handbag",
+      "name": "Handbag",
+      "level": "macro",
+      "role": "body",
+      "importance": 0.7,
+      "confidence": 0.65,
+      "primitive": "trapezoidPrism",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Structured/rigid bag, hard-surface panel construction, not soft cloth drape.",
+      "geometryDescriptor": {
+        "topologyIntent": "trapezoidal prism body tapering toward top opening, sharp bottom corners",
+        "edgeTreatment": {
+          "type": "bevel-chamfer-blend",
+          "bevelRadius": 0.004,
+          "segments": 4
+        },
+        "deformationStack": [],
+        "uvStrategy": "box-projected UVs",
+        "normalStrategy": "flat per face with soft corner bevel"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 0.09,
+        "height": 0.085,
+        "depth": 0.05,
+        "units": "meters",
+        "confidence": 0.55
+      },
+      "transform": {
+        "position": [
+          -0.16,
+          0.1,
+          -0.02
+        ],
+        "rotation": [
+          0,
+          0.15,
+          -0.03
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "floating-callout",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.6
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": false,
+          "scale": false,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [
+          {
+            "id": "handle-socket",
+            "localPosition": [
+              0,
+              0.042,
+              0
+            ],
+            "note": "handle loop attaches here"
+          },
+          {
+            "id": "tag-socket",
+            "localPosition": [
+              0.01,
+              -0.02,
+              0.026
+            ],
+            "note": "price-tag overlaps lower body here"
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false,
+          "notes": "simple box proxy"
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "handbag",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "bag-leather"
+        }
+      },
+      "material": "bag-leather",
+      "materialLayers": [
+        "bag-leather"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [
+        "side gusset fold line (implied)"
+      ],
+      "localFeatures": [
+        "small dark D-ring hardware at strap attachment, lower-left of main handle (zone-r0c0)"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.55,
+        "microRoughness": 0.25,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "subtle leather grain",
+        "displacementPattern": "none",
+        "occlusionPattern": "AO at base corners and gusset fold",
+        "edgeWearPattern": "none observed",
+        "notes": "Clasp/zipper/stitching below legible resolution -- omitted. One small dark hardware ring IS legible (zone-r0c0) and is included as a localFeature."
+      },
+      "evidenceRefs": [
+        "bag-region"
+      ],
+      "details": [
+        "strap-hardware-ring"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "bag-handle",
+      "name": "Handle loop",
+      "level": "meso",
+      "role": "connector",
+      "importance": 0.5,
+      "confidence": 0.6,
+      "primitive": "torusArc",
+      "topologyClass": "curve-network",
+      "topologyRationale": "Thin swept-tube arc; classic curve+tube case, not a solid mass.",
+      "geometryDescriptor": {
+        "topologyIntent": "semicircular tube arc spanning the bag's top opening",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0.0,
+          "segments": 12
+        },
+        "deformationStack": [],
+        "uvStrategy": "tube UVs along curve length",
+        "normalStrategy": "smooth"
+      },
+      "parent": "handbag",
+      "attachment": {
+        "parentSocket": "handbag.handle-socket",
+        "localStart": [
+          -0.028,
+          0.042,
+          0.0
+        ],
+        "localEnd": [
+          0.028,
+          0.042,
+          0.0
+        ],
+        "contactType": "socket",
+        "embedDepth": 0.003,
+        "gapTolerance": 0.0005
+      },
+      "dimensions": {
+        "width": 0.056,
+        "height": 0.03,
+        "depth": 0.006,
+        "units": "meters",
+        "confidence": 0.55
+      },
+      "transform": {
+        "position": [
+          0,
+          0.042,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-decoration",
+        "pivot": {
+          "mode": "root-bone",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.55
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": true,
+          "notes": ""
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "handbag",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "bag-leather"
+        }
+      },
+      "material": "bag-leather",
+      "materialLayers": [
+        "bag-leather"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.55,
+        "microRoughness": 0.25,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO where loop meets body",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "bag-region"
+      ],
+      "details": [],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "price-tag",
+      "name": "Price tag ($145 / -24%)",
+      "level": "macro",
+      "role": "detail",
+      "importance": 0.55,
+      "confidence": 0.7,
+      "primitive": "roundedPlate",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Thin flat card, negligible depth.",
+      "geometryDescriptor": {
+        "topologyIntent": "thin rounded-rect plate",
+        "edgeTreatment": {
+          "type": "bevel-chamfer-blend",
+          "bevelRadius": 0.001,
+          "segments": 4
+        },
+        "deformationStack": [],
+        "uvStrategy": "planar UVs matched to baked tag-text texture",
+        "normalStrategy": "flat"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentSocket": "handbag.tag-socket",
+        "localStart": [
+          0,
+          0,
+          0
+        ],
+        "localEnd": [
+          0,
+          0,
+          0
+        ],
+        "contactType": "overlap",
+        "embedDepth": 0.0005,
+        "gapTolerance": 0.0
+      },
+      "dimensions": {
+        "width": 0.032,
+        "height": 0.018,
+        "depth": 0.001,
+        "units": "meters",
+        "confidence": 0.6
+      },
+      "transform": {
+        "position": [
+          -0.14,
+          0.075,
+          -0.005
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.08
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-decoration",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.6
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": false,
+          "scale": false,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": true,
+          "notes": ""
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "price-tag",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "card-white-matte"
+        }
+      },
+      "material": "card-white-matte",
+      "materialLayers": [
+        "card-white-matte"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "'$145' text block (blue $ + black numerals)",
+        "small folded triangular tab at top-left corner (zone-r1c0)"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.85,
+        "microRoughness": 0.1,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "none",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact AO against bag body",
+        "edgeWearPattern": "none",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "bag-region"
+      ],
+      "details": [],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "price-tag-badge",
+      "name": "'-24%' corner badge",
+      "level": "micro",
+      "role": "detail",
+      "importance": 0.35,
+      "confidence": 0.65,
+      "primitive": "roundedPlate",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Small flat card overlapping the tag's top-right corner.",
+      "geometryDescriptor": {
+        "topologyIntent": "small rounded-corner plate, red, overlapping parent tag's corner",
+        "edgeTreatment": {
+          "type": "bevel-chamfer-blend",
+          "bevelRadius": 0.0006,
+          "segments": 4
+        },
+        "deformationStack": [],
+        "uvStrategy": "planar UVs matched to baked badge-text texture",
+        "normalStrategy": "flat"
+      },
+      "parent": "price-tag",
+      "attachment": {
+        "parentSocket": "price-tag-top-right-corner",
+        "localStart": [
+          0.013,
+          0.006,
+          0.0006
+        ],
+        "localEnd": [
+          0.013,
+          0.006,
+          0.0006
+        ],
+        "contactType": "overlap",
+        "embedDepth": 0.0003,
+        "gapTolerance": 0.0
+      },
+      "dimensions": {
+        "width": 0.012,
+        "height": 0.008,
+        "depth": 0.0006,
+        "units": "meters",
+        "confidence": 0.55
+      },
+      "transform": {
+        "position": [
+          0.013,
+          0.006,
+          0.0006
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static-decoration",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.55
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": false
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": true,
+          "notes": ""
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "price-tag",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "badge-red"
+        }
+      },
+      "material": "badge-red",
+      "materialLayers": [
+        "badge-red"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        "'-24%' white text"
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.7,
+        "microRoughness": 0.1,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "none",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact AO against tag",
+        "edgeWearPattern": "none",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "bag-region"
+      ],
+      "details": [],
+      "fidelityTier": "blockout"
+    }
+  ],
+  "materials": [
+    {
+      "id": "phone-metal-edge",
+      "name": "Phone anodized metal edge + back",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#1b1c1f",
+      "color": "#1b1c1f",
+      "albedo": {
+        "dominant": "#1b1c1f",
+        "secondary": [
+          "#2a2b2f",
+          "#101113"
+        ],
+        "samplingNotes": "Near-black graphite, slight warm-neutral cast observed on the visible edge band."
+      },
+      "colorVariation": {
+        "palette": [
+          "#1b1c1f",
+          "#2a2b2f",
+          "#101113"
+        ],
+        "pattern": "subtle-banding",
+        "amplitude": 0.08,
+        "heightCorrelation": 0.1
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          1,
+          1
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "stable object-scale detail"
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.5,
+          "amplitude": 0.3,
+          "role": "overall value/tone"
+        },
+        {
+          "id": "meso",
+          "frequency": 10,
+          "amplitude": 0.15,
+          "role": "brushed-metal directional streaking on edge band"
+        },
+        {
+          "id": "micro",
+          "frequency": 48,
+          "amplitude": 0.05,
+          "role": "specular sparkle breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.25,
+        "variation": 0.08,
+        "map": "independent-procedural-field",
+        "localResponse": "lower roughness on rounded edge highlight line"
+      },
+      "metalness": {
+        "base": 0.9,
+        "variation": 0.05
+      },
+      "normal": {
+        "pattern": "brushed-anisotropic-streaks",
+        "strength": 0.25,
+        "scale": 30,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.2,
+        "contactShadowBias": 0.3,
+        "notes": ""
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#000000"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "MeshPhysicalMaterial for clearcoat-adjacent edge highlight."
+      ],
+      "notes": "Back shell reuses this material as a plain flat region (occluded region, no independent evidence)."
+    },
+    {
+      "id": "phone-screen-glass",
+      "name": "Phone cover glass",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#050505",
+      "color": "#050505",
+      "albedo": {
+        "dominant": "#050505",
+        "secondary": [
+          "#000000"
+        ],
+        "samplingNotes": "Glass base is near-black where content is dark; content layer supplies most visible color."
+      },
+      "colorVariation": {
+        "palette": [
+          "#050505"
+        ],
+        "pattern": "flat",
+        "amplitude": 0.02,
+        "heightCorrelation": 0
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          1,
+          1
+        ],
+        "anisotropy": 4,
+        "texelDensityIntent": "matches phone-screen-emissive-content 1:1"
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1,
+          "amplitude": 0.1,
+          "role": "flat glass tone"
+        }
+      ],
+      "roughness": {
+        "base": 0.06,
+        "variation": 0.02,
+        "map": "flat",
+        "localResponse": "uniform glossy"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "none",
+        "strength": 0,
+        "scale": 1,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0,
+        "contactShadowBias": 0,
+        "notes": ""
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#000000"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Thin glossy coat over the emissive content layer; use clearcoat 1.0 low roughness."
+      ],
+      "notes": ""
+    },
+    {
+      "id": "phone-screen-emissive-content",
+      "name": "Projected UI content (screen)",
+      "type": "physical",
+      "shaderModel": "MeshBasicMaterial (emissive, unlit)",
+      "baseColor": "#ffffff",
+      "color": "#ffffff",
+      "albedo": {
+        "dominant": "#ffffff",
+        "secondary": [
+          "#1a5cff",
+          "#e11d3c"
+        ],
+        "samplingNotes": "De-lit crop of the reference's own screen region (ZARA SALE card + bottom nav sheet), baked as a canvas/data texture, not a procedural redraw."
+      },
+      "colorVariation": {
+        "palette": [
+          "#ffffff",
+          "#1a5cff",
+          "#e11d3c",
+          "#111111"
+        ],
+        "pattern": "content-driven",
+        "amplitude": 0,
+        "heightCorrelation": 0
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          1,
+          1
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "1:1 with phone-screen component UVs"
+      },
+      "surfaceFrequencyBands": [],
+      "roughness": {
+        "base": 1,
+        "variation": 0,
+        "map": "n/a (unlit)",
+        "localResponse": "n/a"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "none",
+        "strength": 0,
+        "scale": 1,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0,
+        "contactShadowBias": 0,
+        "notes": ""
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#000000"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Route: reference-projection. Source pixels de-lit and baked to a canvas texture at build time (see grimoire projection-first fidelity)."
+      ],
+      "notes": "Rendered as an unlit/basic layer composited under the glass clearcoat so screen reads as self-illuminated."
+    },
+    {
+      "id": "phone-notch-black",
+      "name": "Camera notch",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial",
+      "baseColor": "#020202",
+      "color": "#020202",
+      "albedo": {
+        "dominant": "#020202",
+        "secondary": [],
+        "samplingNotes": ""
+      },
+      "colorVariation": {
+        "palette": [
+          "#020202"
+        ],
+        "pattern": "flat",
+        "amplitude": 0,
+        "heightCorrelation": 0
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          1,
+          1
+        ],
+        "anisotropy": 1,
+        "texelDensityIntent": ""
+      },
+      "surfaceFrequencyBands": [],
+      "roughness": {
+        "base": 0.3,
+        "variation": 0.05,
+        "map": "flat",
+        "localResponse": ""
+      },
+      "metalness": {
+        "base": 0.1,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "none",
+        "strength": 0,
+        "scale": 1,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.4,
+        "contactShadowBias": 0.4,
+        "notes": ""
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#000000"
+      },
+      "localOverrides": [],
+      "shaderNotes": [],
+      "notes": ""
+    },
+    {
+      "id": "skin",
+      "name": "Hand skin",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#a5673f",
+      "color": "#a5673f",
+      "albedo": {
+        "dominant": "#a5673f",
+        "secondary": [
+          "#8a5230",
+          "#c98a5e"
+        ],
+        "samplingNotes": "Mid warm-brown, hue ~25-30deg, moderate saturation."
+      },
+      "colorVariation": {
+        "palette": [
+          "#a5673f",
+          "#8a5230",
+          "#c98a5e"
+        ],
+        "pattern": "mottled",
+        "amplitude": 0.12,
+        "heightCorrelation": 0.2
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          1,
+          1
+        ],
+        "anisotropy": 4,
+        "texelDensityIntent": ""
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.3,
+          "role": "broad tonal variation across palm/fingers"
+        },
+        {
+          "id": "meso",
+          "frequency": 14,
+          "amplitude": 0.15,
+          "role": "knuckle crease relief"
+        },
+        {
+          "id": "micro",
+          "frequency": 60,
+          "amplitude": 0.05,
+          "role": "skin pore/sheen breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.6,
+        "variation": 0.15,
+        "map": "independent-procedural-field",
+        "localResponse": "lower roughness (~0.2) at knuckle specular hotspots",
+        "referencePbrConfidence": 0.86,
+        "referencePbrNote": "extract_pbr_evidence.py measured roughnessBase 0.69 on skin-crop.png; nudged initial estimate (0.5) up to 0.6, not fully to 0.69, since the crop includes a soft-shadow edge that inflates the estimate."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "derived-from-independent-height-field",
+        "strength": 0.2,
+        "scale": 40,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "knuckle-crease",
+        "amplitude": 0.02,
+        "scale": 20
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.3,
+        "contactShadowBias": 0.35,
+        "notes": "Between curled fingers and palm."
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#000000"
+      },
+      "localOverrides": [
+        {
+          "region": "knuckles",
+          "roughnessDelta": -0.25,
+          "note": "glossy specular highlight observed on knuckles (skin-oil sheen)"
+        }
+      ],
+      "shaderNotes": [
+        "Approximate subsurface look with a warm-tinted base + soft rim light rather than true SSS transmission (stylized real-time target)."
+      ],
+      "notes": "analyze_texture.py's finish classifier (gem-metal|gemstone|painted-metal|worn-composite|brushed-steel|plastic) has no organic/skin category -- it forced this crop into 'painted-metal' with clearcoat=1.0 and a dark olive texturePalette pulled partly from background pixels at the crop edge. Overridden by direct visual analysis: baseColor/albedo/roughness/metalness above are the trusted values (see analysis.md Layer 5-6 and skin-crop.png). No clearcoat/transmission on skin."
+    },
+    {
+      "id": "bag-leather",
+      "name": "Handbag leather",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial",
+      "baseColor": "#c8b89a",
+      "color": "#c8b89a",
+      "albedo": {
+        "dominant": "#c8b89a",
+        "secondary": [
+          "#b3a184",
+          "#ded0b6"
+        ],
+        "samplingNotes": "Warm beige/taupe, hue ~35-40deg, high value, low-moderate saturation."
+      },
+      "colorVariation": {
+        "palette": [
+          "#c8b89a",
+          "#b3a184",
+          "#ded0b6"
+        ],
+        "pattern": "mottled",
+        "amplitude": 0.1,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          1,
+          1
+        ],
+        "anisotropy": 4,
+        "texelDensityIntent": ""
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.5,
+          "amplitude": 0.25,
+          "role": "panel tone breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 10,
+          "amplitude": 0.15,
+          "role": "leather grain"
+        },
+        {
+          "id": "micro",
+          "frequency": 40,
+          "amplitude": 0.06,
+          "role": "fine grain sparkle"
+        }
+      ],
+      "roughness": {
+        "base": 0.6,
+        "variation": 0.1,
+        "map": "independent-procedural-field",
+        "localResponse": "",
+        "referencePbrConfidence": 0.808,
+        "referencePbrNote": "extract_pbr_evidence.py measured roughnessBase 0.724 on leather-crop.png (flagged low-value-range, weakened inference); nudged initial estimate (0.55) up to 0.6."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "leather-grain",
+        "strength": 0.2,
+        "scale": 25,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.25,
+        "contactShadowBias": 0.3,
+        "notes": "base corners and gusset fold"
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#000000"
+      },
+      "localOverrides": [],
+      "shaderNotes": [],
+      "notes": "Hardware omitted -- below legible resolution. analyze_texture.py's finish classifier has no leather/fabric category and forced this into 'brushed-steel' with metalness=1.0 and anisotropy -- reverted. Matte leather has metalness=0; roughness kept at the higher end (0.55) of the classifier's suggested band since the source reads more matte than the classifier's brushed-metal default (0.35) implied."
+    },
+    {
+      "id": "card-white-matte",
+      "name": "Price tag card stock",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial",
+      "baseColor": "#f5f5f2",
+      "color": "#f5f5f2",
+      "albedo": {
+        "dominant": "#f5f5f2",
+        "secondary": [
+          "#111111"
+        ],
+        "samplingNotes": "White card with black '$145' text block."
+      },
+      "colorVariation": {
+        "palette": [
+          "#f5f5f2"
+        ],
+        "pattern": "flat",
+        "amplitude": 0,
+        "heightCorrelation": 0
+      },
+      "textureResolution": 512,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          1,
+          1
+        ],
+        "anisotropy": 2,
+        "texelDensityIntent": "matches baked tag-text texture 1:1"
+      },
+      "surfaceFrequencyBands": [],
+      "roughness": {
+        "base": 0.85,
+        "variation": 0.05,
+        "map": "flat",
+        "localResponse": ""
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "none",
+        "strength": 0,
+        "scale": 1,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.15,
+        "contactShadowBias": 0.2,
+        "notes": ""
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#000000"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "'$145' text baked into an unlit canvas-texture overlay."
+      ],
+      "notes": ""
+    },
+    {
+      "id": "badge-red",
+      "name": "-24% corner badge",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial",
+      "baseColor": "#e11d3c",
+      "color": "#e11d3c",
+      "albedo": {
+        "dominant": "#e11d3c",
+        "secondary": [
+          "#ffffff"
+        ],
+        "samplingNotes": "Vivid red, high saturation, high value; white '-24%' text."
+      },
+      "colorVariation": {
+        "palette": [
+          "#e11d3c"
+        ],
+        "pattern": "flat",
+        "amplitude": 0,
+        "heightCorrelation": 0
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          1,
+          1
+        ],
+        "anisotropy": 2,
+        "texelDensityIntent": "matches baked badge-text texture 1:1"
+      },
+      "surfaceFrequencyBands": [],
+      "roughness": {
+        "base": 0.7,
+        "variation": 0.05,
+        "map": "flat",
+        "localResponse": ""
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "none",
+        "strength": 0,
+        "scale": 1,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0,
+        "scale": 1,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.1,
+        "contactShadowBias": 0.2,
+        "notes": ""
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#000000"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "'-24%' text baked into an unlit canvas-texture overlay."
+      ],
+      "notes": ""
+    }
+  ],
+  "repetitionSystems": [
+    {
+      "id": "curling-fingers",
+      "componentRef": "hand-fingers",
+      "count": 3,
+      "arrangement": "linear-offset-along-phone-top-edge",
+      "instanceParams": {
+        "spacingUnits": 0.009,
+        "curlAngleRange": [
+          65,
+          75
+        ],
+        "lengthVariation": [
+          0.95,
+          1.05
+        ]
+      },
+      "notes": "Index/middle/ring fingers; each instance gets a slightly different curl angle and length so the row does not read as mechanically identical."
+    }
+  ],
+  "buildPasses": [
+    {
+      "id": "blockout",
+      "goal": "Match macro silhouette, proportions, and relative placement of all 4 objects.",
+      "componentRefs": [
+        "root",
+        "phone-body",
+        "hand",
+        "handbag",
+        "price-tag"
+      ],
+      "acceptance": [
+        "Silhouette of all 4 objects reads correctly without materials.",
+        "Relative screen-space placement matches the reference composition.",
+        "AI vision comparison score meets threshold."
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "goal": "Build full component hierarchy: screen/notch, palm/thumb/fingers/forearm, handle, badge.",
+      "componentRefs": [
+        "phone-screen",
+        "phone-notch",
+        "hand-palm",
+        "hand-thumb",
+        "hand-fingers",
+        "hand-forearm-stub",
+        "bag-handle",
+        "price-tag-badge"
+      ],
+      "acceptance": [
+        "Macro/meso/micro depth meets qualityContract.minimumSpecDepth.",
+        "Every attached child (screen, notch, fingers, handle, badge) has a complete attachment contract.",
+        "AI vision comparison score meets threshold."
+      ]
+    },
+    {
+      "id": "form-refinement",
+      "goal": "Refine bevels, tapers, finger curl bends, bag taper, tag overlap.",
+      "componentRefs": [
+        "phone-body",
+        "hand-fingers",
+        "hand-thumb",
+        "handbag",
+        "price-tag-badge"
+      ],
+      "acceptance": [
+        "Fingers visibly wrap the phone edge with no floating gap.",
+        "Bag taper and handle loop read correctly.",
+        "AI vision comparison score meets threshold."
+      ]
+    },
+    {
+      "id": "material-pass",
+      "goal": "Apply reference-derived albedo/roughness/metalness per material; project screen content.",
+      "componentRefs": [
+        "phone-body",
+        "phone-screen",
+        "hand",
+        "handbag",
+        "price-tag",
+        "price-tag-badge"
+      ],
+      "acceptance": [
+        "Each material's albedo palette matches analysis.md Layer 6.",
+        "Screen carries the projected reference crop, not a flat color.",
+        "AI vision comparison score meets threshold."
+      ]
+    },
+    {
+      "id": "surface-pass",
+      "goal": "Add local overrides: knuckle sheen, leather grain, notch AO.",
+      "componentRefs": [
+        "hand",
+        "handbag",
+        "phone-notch"
+      ],
+      "acceptance": [
+        "localOverrides render visibly under grazing light.",
+        "AI vision comparison score meets threshold."
+      ]
+    },
+    {
+      "id": "lighting-pass",
+      "goal": "Key/fill/rim lighting matching the reference's soft top-lit look; contact shadows.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Lighting reproduces the reference's soft, evenly-lit product-shot look.",
+        "Contact shadows present under phone/hand and bag.",
+        "AI vision comparison score meets threshold."
+      ]
+    },
+    {
+      "id": "interaction-pass",
+      "goal": "Confirm pivots/sockets/colliders are action-ready for future idle animation (phone tilt, bag bob).",
+      "componentRefs": [
+        "root",
+        "phone-body",
+        "handbag"
+      ],
+      "acceptance": [
+        "Stable named pivots exist for phone-body and handbag.",
+        "AI vision comparison score meets threshold."
+      ]
+    },
+    {
+      "id": "optimization-pass",
+      "goal": "Verify triangle/draw-call budget for a real-time product-card embed.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Triangle count and draw calls documented against performanceBudget.",
+        "Finger repetition instanced, not 3 bespoke high-poly meshes."
+      ]
+    }
+  ],
+  "visualEvidence": [],
+  "reviewHistory": [],
+  "lodPlan": [
+    {
+      "tier": "near",
+      "distance": 0,
+      "strategy": "full component tree and material layers"
+    },
+    {
+      "tier": "far",
+      "distance": 8,
+      "strategy": "merge phone+hand into one draw call region, drop bag/tag micro bevels"
+    }
+  ],
+  "performanceBudget": {
+    "qualityPriority": "balanced",
+    "targetTriangles": 40000,
+    "maxDrawCalls": 24,
+    "textureSize": 1024,
+    "fpsTarget": 60,
+    "optimizationPolicy": "This is a small embedded product-card hero, not a hero cinematic -- keep triangle/draw-call budget low; finger repetition instanced."
+  },
+  "lightingFromPhoto": [
+    {
+      "role": "key",
+      "direction": "soft top-front, slightly camera-left",
+      "colorTemp": "neutral-cool ~6000K",
+      "intensity": "medium-high, low contrast (product-shot softbox look)"
+    },
+    {
+      "role": "fill",
+      "direction": "ambient/bounce, camera-front",
+      "colorTemp": "neutral",
+      "intensity": "medium, keeps shadow side readable"
+    },
+    {
+      "role": "rim",
+      "direction": "none strongly observed",
+      "colorTemp": "n/a",
+      "intensity": "none"
+    }
+  ],
+  "proceduralStrategy": [
+    "Block out phone slab, hand mass, bag prism, and tag plate first -- match silhouette and relative placement before any detail.",
+    "Add component hierarchy: screen/notch on phone; palm/thumb/fingers/forearm on hand; handle on bag; badge on tag.",
+    "Attach fingers to the phone's grip socket with wrap contactType so they read as gripping, not floating.",
+    "Solve camera framing and de-light + project the reference's own screen-region pixels onto the phone-screen component before treating the screen as 'done'.",
+    "Add material variation (skin knuckle sheen, leather grain) before micro-geometry polish.",
+    "Build the mall backdrop separately in the scene-assembly layer (not this spec's componentTree) as a soft blurred plane/gradient -- never claimed as reconstructed architecture."
+  ],
+  "animationAnchors": [
+    "root pivot supports whole-scene camera framing",
+    "phone-body pivot supports idle tilt",
+    "handbag pivot supports idle float/bob",
+    "hand-fingers repetition instances support later per-finger curl animation"
+  ],
+  "destructionAnchors": [
+    "not applicable -- product-card hero asset, destructionPolicy.defaultBreakable=false across all components"
+  ],
+  "actionReadiness": {
+    "contract": "Every macro/meso component is a stable named Object3D pivot with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
+    "defaultRigType": "action-ready-static-rig",
+    "rootMotionNode": "root",
+    "requiredComponentFields": [
+      "id",
+      "parent",
+      "transform",
+      "attachment for child appendages",
+      "actionProfile.animationRole",
+      "actionProfile.pivot",
+      "actionProfile.collider",
+      "actionProfile.destruction"
+    ],
+    "transformChannels": [
+      "translate",
+      "rotate",
+      "scale",
+      "bend",
+      "twist",
+      "detach",
+      "visibility",
+      "material-state"
+    ],
+    "authoringRules": [
+      "Do not collapse independently movable parts into one mesh.",
+      "Put transforms on component pivot groups, not only on raw meshes.",
+      "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd."
+    ],
+    "destructionPolicy": {
+      "defaultBreakable": false,
+      "fractureGroupNaming": "n/a for this asset",
+      "debrisStrategy": "n/a"
+    }
+  }
+}

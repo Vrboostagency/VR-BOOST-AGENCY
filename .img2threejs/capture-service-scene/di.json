@@ -1,0 +1,110 @@
+{
+  "sourceImage": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\Design\\images\\Capture service\\3d model\\Group 1171277420.png",
+  "zonesDir": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\detail-inventory",
+  "detailInventory": {
+    "scanMethod": "grid-3x3",
+    "targetMinDetails": 10,
+    "details": [
+      {
+        "id": "zone-r0c0",
+        "kind": "hardware",
+        "description": "Small dark D-ring/loop hardware where the bag's shoulder strap attaches to the body, lower-left of the main handle. Not previously noted in the full-frame pass -- revises the 'hardware omitted' assumption to a single small dark ring, still no legible stitching/zipper.",
+        "region": { "x": 0.0, "y": 0.0, "width": 0.3333, "height": 0.3333, "units": "normalized" },
+        "scale": "micro",
+        "affects": "geometry (small torus/ring primitive) + material (dark metal, distinct from leather)",
+        "mapsTo": { "type": "component", "ref": "handbag" },
+        "evidenceRef": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\detail-inventory\\zone-r0c0.png",
+        "confidence": 0.55
+      },
+      {
+        "id": "zone-r0c1",
+        "kind": "form",
+        "description": "Phone top bezel with centered front-camera notch (small dark capsule) and the phone's upper rounded corners against the blurred storefront backdrop. Confirms notch is a flattened horizontal capsule, not a circular dot.",
+        "region": { "x": 0.3333, "y": 0.0, "width": 0.3333, "height": 0.3333, "units": "normalized" },
+        "scale": "meso",
+        "affects": "geometry (notch capsule shape/position)",
+        "mapsTo": { "type": "component", "ref": "phone-notch" },
+        "evidenceRef": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\detail-inventory\\zone-r0c1.png",
+        "confidence": 0.7
+      },
+      {
+        "id": "zone-r0c2",
+        "kind": "ui-content",
+        "description": "Top of the floating location-list card: 'Locations' header with dropdown chevron, back arrow, search bar with magnifier icon, 'FASHION' section label. Confirms this card floats independently over the blurred backdrop, not attached to the phone.",
+        "region": { "x": 0.6667, "y": 0.0, "width": 0.3333, "height": 0.3333, "units": "normalized" },
+        "scale": "meso",
+        "affects": "texture only (this card is explicitly non-geometric UI content per suitability verdict)",
+        "mapsTo": { "type": "material", "ref": "n/a -- excluded from componentTree per analysis.md Layer 1 (subject E)" },
+        "evidenceRef": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\detail-inventory\\zone-r0c2.png",
+        "confidence": 0.6
+      },
+      {
+        "id": "zone-r1c0",
+        "kind": "detail",
+        "description": "Price tag close-up: blue '$' + black '145' numerals, red rounded '-24%' badge overlapping the tag's top-right corner with white text, and a small folded triangular tab visible at the tag's top-left corner (like a torn/folded price-tag corner). This folded tab was not caught in the full-frame pass.",
+        "region": { "x": 0.0, "y": 0.3333, "width": 0.3333, "height": 0.3333, "units": "normalized" },
+        "scale": "micro",
+        "affects": "geometry (small folded corner tab) + material (badge-red local text, card local text)",
+        "mapsTo": { "type": "component", "ref": "price-tag" },
+        "evidenceRef": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\detail-inventory\\zone-r1c0.png",
+        "confidence": 0.6
+      },
+      {
+        "id": "zone-r1c1",
+        "kind": "ui-content",
+        "description": "Center of phone screen: 'SALE' promo card (partial ZARA product thumbnails at top) over the mall photo, with several small blue circular AR floor markers overlaid on the reflective floor -- these read as AR wayfinding/point-of-interest dots, a detail not caught in the full-frame pass. Hand fingers visible left and right edges gripping the phone.",
+        "region": { "x": 0.3333, "y": 0.3333, "width": 0.3333, "height": 0.3333, "units": "normalized" },
+        "scale": "meso",
+        "affects": "texture only (screen content, including AR dots, is part of the projected screen crop)",
+        "mapsTo": { "type": "material", "ref": "phone-screen-emissive-content" },
+        "evidenceRef": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\detail-inventory\\zone-r1c1.png",
+        "confidence": 0.65
+      },
+      {
+        "id": "zone-r1c2",
+        "kind": "ui-content",
+        "description": "Store list rows on the floating location card: thumbnail + 'ZARA / 62m', 'CALVIN KLEIN / 41m', 'GAP / 74m', plus a small blue 'Big screen' pill badge top-right corner of the card. Confirms 3 store rows with distance labels.",
+        "region": { "x": 0.6667, "y": 0.3333, "width": 0.3333, "height": 0.3333, "units": "normalized" },
+        "scale": "micro",
+        "affects": "texture only (non-geometric UI content)",
+        "mapsTo": { "type": "material", "ref": "n/a -- excluded from componentTree" },
+        "evidenceRef": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\detail-inventory\\zone-r1c2.png",
+        "confidence": 0.6
+      },
+      {
+        "id": "zone-r2c0",
+        "kind": "empty",
+        "description": "Mostly empty white card-background margin plus a sliver of the phone's lower-right edge and blurred backdrop. No new identity-defining detail.",
+        "region": { "x": 0.0, "y": 0.6667, "width": 0.3333, "height": 0.3333, "units": "normalized" },
+        "scale": "n/a",
+        "affects": "none",
+        "mapsTo": { "type": "component", "ref": "n/a" },
+        "evidenceRef": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\detail-inventory\\zone-r2c0.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "zone-r2c1",
+        "kind": "ui-content",
+        "description": "Bottom nav sheet on the phone screen: small storefront thumbnail, bold 'ZARA' label with '16m to go' subtext, a circular white 'X' close button top-right, and a 'Locations' dropdown row with pin icon below it. Confirms bottom-sheet card structure.",
+        "region": { "x": 0.3333, "y": 0.6667, "width": 0.3333, "height": 0.3333, "units": "normalized" },
+        "scale": "meso",
+        "affects": "texture only (screen content)",
+        "mapsTo": { "type": "material", "ref": "phone-screen-emissive-content" },
+        "evidenceRef": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\detail-inventory\\zone-r2c1.png",
+        "confidence": 0.7
+      },
+      {
+        "id": "zone-r2c2",
+        "kind": "form+material",
+        "description": "Close-up of forearm/wrist skin (visible pore/grain texture and warm mid-brown tone) against the phone's lower-left rounded corner and dark screen edge. Confirms phone corner radius is large/soft and skin has visible fine-grain texture, not perfectly smooth.",
+        "region": { "x": 0.6667, "y": 0.6667, "width": 0.3333, "height": 0.3333, "units": "normalized" },
+        "scale": "micro",
+        "affects": "material (skin micro-frequency grain) + geometry (phone corner bevel radius confirmation)",
+        "mapsTo": { "type": "material", "ref": "skin" },
+        "evidenceRef": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\detail-inventory\\zone-r2c2.png",
+        "confidence": 0.6
+      }
+    ]
+  },
+  "authoringInstruction": "Filled from direct visual inspection of each zone crop. Two new details surfaced beyond the full-frame pass: a small dark hardware ring at the bag's strap attachment, and blue AR floor-marker dots baked into the screen content. Both folded back into scene-spec.json (bag hardware ring added as a localFeature; AR dots noted as part of the projected screen crop, no separate component needed since they're texture content)."
+}

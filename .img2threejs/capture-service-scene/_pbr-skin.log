@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.7,
+  "materialId": "skin",
+  "sourceImage": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\skin-crop.png",
+  "outDir": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\pbr-skin",
+  "palette": [
+    "#633F32",
+    "#2F2D27",
+    "#502E22",
+    "#856054",
+    "#B7897D"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\pbr-skin\\skin_albedo.png",
+      "url": "skin_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\pbr-skin\\skin_roughness.png",
+      "url": "skin_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\pbr-skin\\skin_height.png",
+      "url": "skin_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\pbr-skin\\skin_normal.png",
+      "url": "skin_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "F:\\vr agency boost\\vrboostagency\\VR-BOOST-AGENCY\\.img2threejs\\capture-service-scene\\pbr-skin\\skin_ao.png",
+      "url": "skin_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 95,
+    "sourceHeight": 80,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 95,
+      "height": 80
+    },
+    "mask": {
+      "backgroundColor": "#6B655A",
+      "backgroundNoise": 143.548,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.5401
+    },
+    "mapStats": {
+      "valueRange": 0.3958,
+      "heightP90Gradient": 0.02673,
+      "roughnessBase": 0.691,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.188,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#633F32",
+      "#2F2D27",
+      "#502E22",
+      "#856054",
+      "#B7897D"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

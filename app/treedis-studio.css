@@ -1,0 +1,143 @@
+/* Treedis Studio clone — page-scoped foundation (fonts, tokens, keyframes).
+   All selectors are namespaced with .tds- so existing routes are unaffected. */
+
+@font-face { font-family: "Codecpro"; src: url("/sites/treedis-studio/CodecPro-Light.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Codecpro"; src: url("/sites/treedis-studio/CodecPro-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Codecpro"; src: url("/sites/treedis-studio/CodecPro-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Assistant"; src: url("/sites/treedis-studio/Assistant-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Assistant"; src: url("/sites/treedis-studio/Assistant-SemiBold.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Assistant"; src: url("/sites/treedis-studio/Assistant-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+
+.tds-page {
+  --tds-blue: #2055ff;
+  --tds-navy: #0a1020;
+  --tds-navy-2: #090f21;
+  --tds-light: #f2f4f7;
+  --tds-text: #101828;
+  --tds-muted: #85878f;
+  --tds-red: #ff443d;
+  --tds-cyan: #3cefef;
+
+  /* Motion system tokens — see .claude/skills/motion-design */
+  --dur-1: 120ms;
+  --dur-2: 180ms;
+  --dur-3: 240ms;
+  --dur-4: 300ms;
+  --dur-5: 500ms;
+  --dur-illustrative: 900ms;
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  font-family: "Codecpro", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--tds-text);
+  background-color: var(--tds-light);
+}
+
+/* Infinite logo marquee */
+@keyframes tds-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.tds-marquee-track {
+  animation: tds-marquee 60s linear infinite;
+}
+.tds-marquee:hover .tds-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Hero grid line draw-in */
+@keyframes tds-line-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+.tds-hero-lines path {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: tds-line-draw 1.6s ease-out forwards;
+}
+.tds-hero-lines path:nth-child(2) { animation-delay: 0.15s; }
+.tds-hero-lines path:nth-child(3) { animation-delay: 0.3s; }
+.tds-hero-lines path:nth-child(4) { animation-delay: 0.45s; }
+.tds-hero-lines path:nth-child(5) { animation-delay: 0.6s; }
+
+/* Fade-up on scroll (animated by GSAP/ScrollTrigger in the Reveal component).
+   This CSS-only baseline avoids a flash of visible content before JS hydrates,
+   and the reduced-motion override works even before hydration. */
+.tds-reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 28px));
+}
+@media (prefers-reduced-motion: reduce) {
+  .tds-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Same baseline, applied to each direct child, for grid/row stagger groups. */
+.tds-reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 24px));
+}
+@media (prefers-reduced-motion: reduce) {
+  .tds-reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Hero entrance baseline — avoids a flash of visible content before the GSAP
+   timeline runs, and honors prefers-reduced-motion even before hydration. */
+.tds-hero-init {
+  opacity: 0;
+}
+.tds-hero-init--clip {
+  clip-path: inset(0% 0% 100% 0%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tds-hero-init {
+    opacity: 1 !important;
+  }
+  .tds-hero-init--clip {
+    clip-path: none !important;
+  }
+}
+
+/* Directional clip-path image reveal — see components/motion/ClipReveal.tsx */
+.tds-clip-reveal {
+  clip-path: var(--clip-from, inset(0% 0% 100% 0%));
+  transform: scale(var(--clip-scale, 1.08));
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tds-clip-reveal {
+    clip-path: none !important;
+    transform: none !important;
+  }
+}
+
+/* Hero scroll cue */
+@keyframes tds-scroll-cue {
+  0%, 20% { transform: translateY(0); opacity: 1; }
+  60% { transform: translateY(10px); opacity: 0; }
+  61% { transform: translateY(0); opacity: 0; }
+  80%, 100% { transform: translateY(0); opacity: 1; }
+}
+.tds-scroll-cue span {
+  animation: tds-scroll-cue 2s ease-in-out infinite;
+}
+
+/* Case-study carousel: hide scrollbar, snap */
+.tds-carousel {
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.tds-carousel::-webkit-scrollbar { display: none; }
+.tds-carousel > * { scroll-snap-align: start; }

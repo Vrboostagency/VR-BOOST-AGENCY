@@ -1,0 +1,48 @@
+FAIL
+warning: quality: preSpecAssessment has unresolved unknowns before implementation
+warning: quality: missing lookDevTargets; material/color/lighting passes may stay flat
+warning: quality: lighting-pass needs exposure and tone mapping intent
+warning: quality: lighting-pass needs contact shadow or ground shadow behavior
+warning: quality: component 'root' is missing colorMaterialRecipe
+warning: quality: component 'phone-body' is missing colorMaterialRecipe
+warning: quality: component 'phone-screen' is missing colorMaterialRecipe
+warning: quality: component 'phone-notch' is missing colorMaterialRecipe
+warning: quality: component 'hand' missing or invalid topologyClass (must be one of: assembled-solid, conforming-shell, continuous-sculpt, fiber-strand, implicit, material-only, open-shell, surface-relief)
+warning: quality: component 'hand-palm' missing or invalid topologyClass (must be one of: assembled-solid, conforming-shell, continuous-sculpt, fiber-strand, implicit, material-only, open-shell, surface-relief)
+warning: quality: component 'hand-thumb' missing or invalid topologyClass (must be one of: assembled-solid, conforming-shell, continuous-sculpt, fiber-strand, implicit, material-only, open-shell, surface-relief)
+warning: quality: component 'hand-fingers' missing or invalid topologyClass (must be one of: assembled-solid, conforming-shell, continuous-sculpt, fiber-strand, implicit, material-only, open-shell, surface-relief)
+warning: quality: component 'hand-forearm-stub' missing or invalid topologyClass (must be one of: assembled-solid, conforming-shell, continuous-sculpt, fiber-strand, implicit, material-only, open-shell, surface-relief)
+warning: quality: component 'handbag' is missing colorMaterialRecipe
+warning: quality: component 'bag-handle' missing or invalid topologyClass (must be one of: assembled-solid, conforming-shell, continuous-sculpt, fiber-strand, implicit, material-only, open-shell, surface-relief)
+warning: quality: component 'price-tag' is missing colorMaterialRecipe
+warning: quality: component 'price-tag-badge' is missing colorMaterialRecipe
+warning: quality: mesoComponents below qualityContract minimum (6 < 11)
+warning: quality: detailInventory has 0 details but targetMinDetails is 10; enumerate identity-defining details (gloss, bevel, fasteners, linework, stains) before code generation
+warning: quality: character anatomy.styleHeads must be greater than 0 (head-unit proportion)
+warning: quality: character anatomy.proportions must set torso/legs head-unit ratios
+warning: quality: character anatomy.faceLandmarks must set eyeLine/noseBase/mouthLine from the reference
+warning: quality: character track needs featureReviewTargets covering anatomy/face/pose/outfit (add anatomy-proportion, face-landmark-placement, pose-silhouette, outfit-and-palette)
+error: preSpecAssessment.complexity.scores.silhouetteComplexity must be an integer from 0 to 3
+error: preSpecAssessment.complexity.scores.componentCount must be an integer from 0 to 3
+error: preSpecAssessment.complexity.scores.hierarchyDepth must be an integer from 0 to 3
+error: preSpecAssessment.complexity.scores.repetitionDensity must be an integer from 0 to 3
+error: preSpecAssessment.complexity.scores.materialLayerCount must be an integer from 0 to 3
+error: preSpecAssessment.complexity.scores.localDetailDensity must be an integer from 0 to 3
+error: preSpecAssessment.complexity.scores.occlusionRisk must be an integer from 0 to 3
+error: preSpecAssessment.complexity.scores.actionReadinessNeed must be an integer from 0 to 3
+error: score 'object_isolation' must be an integer from 0 to 3
+error: score 'silhouette_readability' must be an integer from 0 to 3
+error: score 'depth_inference' must be an integer from 0 to 3
+error: score 'primitive_decomposition' must be an integer from 0 to 3
+error: score 'material_procedurality' must be an integer from 0 to 3
+error: score 'occlusion_risk' must be an integer from 0 to 3
+error: score 'interaction_fit' must be an integer from 0 to 3
+error: component 'root' primitive must be one of: box, capsule, cone, curve-sweep, cylinder, ellipsoid, extrude, ground-blade, instanced-cluster, lathe, plane-card, sphere, torus, tube
+error: component 'phone-body' primitive must be one of: box, capsule, cone, curve-sweep, cylinder, ellipsoid, extrude, ground-blade, instanced-cluster, lathe, plane-card, sphere, torus, tube
+error: component 'phone-screen' primitive must be one of: box, capsule, cone, curve-sweep, cylinder, ellipsoid, extrude, ground-blade, instanced-cluster, lathe, plane-card, sphere, torus, tube
+error: component 'hand' primitive must be one of: box, capsule, cone, curve-sweep, cylinder, ellipsoid, extrude, ground-blade, instanced-cluster, lathe, plane-card, sphere, torus, tube
+error: component 'hand-palm' primitive must be one of: box, capsule, cone, curve-sweep, cylinder, ellipsoid, extrude, ground-blade, instanced-cluster, lathe, plane-card, sphere, torus, tube
+error: component 'handbag' primitive must be one of: box, capsule, cone, curve-sweep, cylinder, ellipsoid, extrude, ground-blade, instanced-cluster, lathe, plane-card, sphere, torus, tube
+error: component 'bag-handle' primitive must be one of: box, capsule, cone, curve-sweep, cylinder, ellipsoid, extrude, ground-blade, instanced-cluster, lathe, plane-card, sphere, torus, tube
+error: component 'price-tag' primitive must be one of: box, capsule, cone, curve-sweep, cylinder, ellipsoid, extrude, ground-blade, instanced-cluster, lathe, plane-card, sphere, torus, tube
+error: component 'price-tag-badge' primitive must be one of: box, capsule, cone, curve-sweep, cylinder, ellipsoid, extrude, ground-blade, instanced-cluster, lathe, plane-card, sphere, torus, tube

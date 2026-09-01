@@ -1,0 +1,130 @@
+{
+  "id": "bag-leather",
+  "name": "Handbag leather",
+  "type": "standard",
+  "shaderModel": "MeshStandardMaterial",
+  "baseColor": "#c8b89a",
+  "color": "#c8b89a",
+  "albedo": {
+    "dominant": "#c8b89a",
+    "secondary": [
+      "#b3a184",
+      "#ded0b6"
+    ],
+    "samplingNotes": "Warm beige/taupe, hue ~35-40deg, high value, low-moderate saturation."
+  },
+  "colorVariation": {
+    "palette": [
+      "#c8b89a",
+      "#b3a184",
+      "#ded0b6"
+    ],
+    "pattern": "mottled",
+    "amplitude": 0.1,
+    "heightCorrelation": 0.15
+  },
+  "textureResolution": 1024,
+  "textureProjection": {
+    "mode": "uv",
+    "repeat": [
+      1,
+      1
+    ],
+    "anisotropy": 4,
+    "texelDensityIntent": ""
+  },
+  "surfaceFrequencyBands": [
+    {
+      "id": "macro",
+      "frequency": 1.5,
+      "amplitude": 0.25,
+      "role": "panel tone breakup"
+    },
+    {
+      "id": "meso",
+      "frequency": 10,
+      "amplitude": 0.15,
+      "role": "leather grain"
+    },
+    {
+      "id": "micro",
+      "frequency": 40,
+      "amplitude": 0.06,
+      "role": "fine grain sparkle"
+    }
+  ],
+  "roughness": {
+    "base": 0.35,
+    "variation": 0.1,
+    "map": "independent-procedural-field",
+    "localResponse": ""
+  },
+  "metalness": {
+    "base": 1.0,
+    "variation": 0
+  },
+  "normal": {
+    "pattern": "leather-grain",
+    "strength": 0.2,
+    "scale": 25,
+    "space": "tangent"
+  },
+  "bump": {
+    "pattern": "none",
+    "amplitude": 0,
+    "scale": 1
+  },
+  "displacement": {
+    "pattern": "none",
+    "amplitude": 0,
+    "scale": 1,
+    "silhouetteAffects": false
+  },
+  "ambientOcclusion": {
+    "cavityStrength": 0.25,
+    "contactShadowBias": 0.3,
+    "notes": "base corners and gusset fold"
+  },
+  "wear": {
+    "edgeWear": 0,
+    "scratches": [],
+    "chips": []
+  },
+  "dirt": {
+    "amount": 0,
+    "cavityBias": 0,
+    "color": "#000000"
+  },
+  "localOverrides": [],
+  "shaderNotes": [],
+  "notes": "Hardware omitted -- below legible resolution.",
+  "finishClass": "brushed-steel",
+  "texturePalette": [
+    "#D8D3CE",
+    "#9E9182",
+    "#988B7C",
+    "#A89C8F",
+    "#9C9082"
+  ],
+  "proceduralTexture": "brushed",
+  "clearcoat": {
+    "base": 0.0,
+    "variation": 0.0
+  },
+  "clearcoatRoughness": {
+    "base": 0.0,
+    "variation": 0.0
+  },
+  "transmission": {
+    "base": 0.0,
+    "variation": 0.0
+  },
+  "ior": {
+    "base": 1.5,
+    "value": 1.5
+  },
+  "envMapIntensity": 1.0,
+  "anisotropy": {
+    "base": 1.0
+  }
+}

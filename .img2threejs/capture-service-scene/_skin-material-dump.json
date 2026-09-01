@@ -1,0 +1,135 @@
+{
+  "id": "skin",
+  "name": "Hand skin",
+  "type": "physical",
+  "shaderModel": "MeshPhysicalMaterial",
+  "baseColor": "#a5673f",
+  "color": "#a5673f",
+  "albedo": {
+    "dominant": "#a5673f",
+    "secondary": [
+      "#8a5230",
+      "#c98a5e"
+    ],
+    "samplingNotes": "Mid warm-brown, hue ~25-30deg, moderate saturation."
+  },
+  "colorVariation": {
+    "palette": [
+      "#a5673f",
+      "#8a5230",
+      "#c98a5e"
+    ],
+    "pattern": "mottled",
+    "amplitude": 0.12,
+    "heightCorrelation": 0.2
+  },
+  "textureResolution": 1024,
+  "textureProjection": {
+    "mode": "uv",
+    "repeat": [
+      1,
+      1
+    ],
+    "anisotropy": 4,
+    "texelDensityIntent": ""
+  },
+  "surfaceFrequencyBands": [
+    {
+      "id": "macro",
+      "frequency": 2,
+      "amplitude": 0.3,
+      "role": "broad tonal variation across palm/fingers"
+    },
+    {
+      "id": "meso",
+      "frequency": 14,
+      "amplitude": 0.15,
+      "role": "knuckle crease relief"
+    },
+    {
+      "id": "micro",
+      "frequency": 60,
+      "amplitude": 0.05,
+      "role": "skin pore/sheen breakup"
+    }
+  ],
+  "roughness": {
+    "base": 0.5,
+    "variation": 0.15,
+    "map": "independent-procedural-field",
+    "localResponse": "lower roughness (~0.2) at knuckle specular hotspots"
+  },
+  "metalness": {
+    "base": 0.0,
+    "variation": 0
+  },
+  "normal": {
+    "pattern": "derived-from-independent-height-field",
+    "strength": 0.2,
+    "scale": 40,
+    "space": "tangent"
+  },
+  "bump": {
+    "pattern": "knuckle-crease",
+    "amplitude": 0.02,
+    "scale": 20
+  },
+  "displacement": {
+    "pattern": "none",
+    "amplitude": 0,
+    "scale": 1,
+    "silhouetteAffects": false
+  },
+  "ambientOcclusion": {
+    "cavityStrength": 0.3,
+    "contactShadowBias": 0.35,
+    "notes": "Between curled fingers and palm."
+  },
+  "wear": {
+    "edgeWear": 0,
+    "scratches": [],
+    "chips": []
+  },
+  "dirt": {
+    "amount": 0,
+    "cavityBias": 0,
+    "color": "#000000"
+  },
+  "localOverrides": [
+    {
+      "region": "knuckles",
+      "roughnessDelta": -0.25,
+      "note": "glossy specular highlight observed on knuckles (skin-oil sheen)"
+    }
+  ],
+  "shaderNotes": [
+    "Approximate subsurface look with a warm-tinted base + soft rim light rather than true SSS transmission (stylized real-time target)."
+  ],
+  "notes": "",
+  "finishClass": "painted-metal",
+  "texturePalette": [
+    "#5C5A51",
+    "#49423D",
+    "#514038",
+    "#563C32",
+    "#8E7870"
+  ],
+  "proceduralTexture": "flat-clearcoat",
+  "clearcoat": {
+    "base": 1.0,
+    "variation": 0.0
+  },
+  "clearcoatRoughness": {
+    "base": 0.05,
+    "variation": 0.0
+  },
+  "transmission": {
+    "base": 0.0,
+    "variation": 0.0
+  },
+  "ior": {
+    "base": 1.5,
+    "value": 1.5
+  },
+  "envMapIntensity": 1.0
+}
