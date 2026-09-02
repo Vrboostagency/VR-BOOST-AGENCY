@@ -1,5 +1,6 @@
 # VR Boost Agency
 
+
 <img width="3791" height="2272" alt="VR Boost Agency preview" src="https://github.com/user-attachments/assets/7ed94406-6c9c-4018-a864-18a19b1af843" />
 
 **VR Boost Agency** is a marketing website for an immersive-media studio, built with Next.js and React Three Fiber. The site presents the agency's product suite — AR navigation, 3D capture, CGI rendering, virtual home staging, hub avatars, and interactive wayfinding — through animated, 3D-driven pages designed to feel like a modern product studio site.
