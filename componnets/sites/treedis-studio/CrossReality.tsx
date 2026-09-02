@@ -42,7 +42,7 @@ export default function CrossReality() {
             </span>
           </h2>
           <div className="mt-8">
-            <CtaButton href="https://my.treedis.com/admin/register" small>
+            <CtaButton href="#contact" small>
               Start Now
             </CtaButton>
           </div>

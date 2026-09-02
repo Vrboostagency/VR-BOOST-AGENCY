@@ -37,7 +37,7 @@ export default function Home() {
             heading="Get in touch with our sales team to receive a free personalized demo."
             bullets={["Full access", "Cancel anytime"]}
             buttonLabel="Try For Now"
-            buttonHref="https://my.treedis.com/admin/register"
+            buttonHref="#contact"
             image="/sites/treedis-studio/2-(3).webp"
             imageAlt=" VR Boost Agency features shown across desktop, kiosk, and mobile devices"
           />
@@ -51,7 +51,7 @@ export default function Home() {
             eyebrow="Interested in VR Boost Agency Enterprise?"
             heading="Get in touch with our sales team to receive a free personalized demo."
             buttonLabel="Contact Us"
-            buttonHref="/contact-sales"
+            buttonHref="#contact"
             image="/sites/treedis-studio/placeholder-wrapper-4.webp"
             imageAlt="User wearing a VR headset interacting with a digital twin"
           />

@@ -123,7 +123,7 @@ export default function FeaturesBento() {
             enable effortless optimization with advanced digital twin
             technology.
           </h5>
-          <CtaButton href="https://my.treedis.com/admin/register" small>
+          <CtaButton href="#contact" small>
              Start For Today
           </CtaButton>
         </div>

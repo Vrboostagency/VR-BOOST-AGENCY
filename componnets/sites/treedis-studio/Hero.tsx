@@ -110,7 +110,7 @@ export default function Hero() {
             Building Digital Twins That Do More
           </h1>
           <div ref={ctaRef} className="tds-hero-init">
-            <CtaButton href="https://my.treedis.com/admin/register">
+            <CtaButton href="#contact">
               Start Now
             </CtaButton>
           </div>

@@ -19,14 +19,14 @@ export default function Frame({
     <ClipReveal
       direction="up"
       duration={1.3}
-      className="relative w-full h-[340px] sm:h-[420px] md:h-[500px] lg:h-auto lg:aspect-[1920/746] overflow-hidden"
+      className="relative w-full aspect-[1920/746] overflow-hidden"
     >
       <svg
         width="1920"
         height="746"
         viewBox="0 0 1920 746"
         fill="none"
-        preserveAspectRatio="xMinYMid slice"
+        preserveAspectRatio="xMidYMid meet"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         className="absolute inset-0 h-full w-full"

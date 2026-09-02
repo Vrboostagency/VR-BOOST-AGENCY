@@ -12,42 +12,42 @@ type ProductCard = {
 const PRODUCT_CARDS: ProductCard[] = [
   {
     label: "Digital twin studio",
-    href: "https://treedis.com/product-by-feature/digital-twin-studio",
+    href: "/Product/Capture",
     icon: `${ASSETS}/layout.svg`,
   },
   {
     label: "Flows",
-    href: "https://treedis.com/product-by-feature/flows",
+    href: "/Product/Navigation",
     icon: `${ASSETS}/Flows.svg`,
   },
   {
     label: "Indoor Navigation",
-    href: "https://treedis.com/solutions-by-use-case/indoor-navigation",
+    href: "/Product/Navigation",
     icon: `${ASSETS}/compass.svg`,
   },
   {
     label: "Virtual Reality",
-    href: "https://treedis.com/product-by-technology/virtual-reality",
+    href: "/Product/HubAvatar",
     icon: `${ASSETS}/vr-glasses-wifi-svgrepo-com-2.svg`,
   },
   {
     label: "Analytics",
-    href: "https://treedis.com/product-by-feature/analytics",
+    href: "/Product",
     icon: `${ASSETS}/bar-chart-2.svg`,
   },
   {
     label: "White Label",
-    href: "https://treedis.com/product-by-feature/white-label",
+    href: "/Product",
     icon: `${ASSETS}/tag.svg`,
   },
   {
     label: "Augmented Reality",
-    href: "https://treedis.com/product-by-technology/augmented-reality",
+    href: "/Product/Navigation",
     icon: `${ASSETS}/augmented-reality-vr-ar-sphere-svgrepo-com-1.svg`,
   },
   {
     label: "Interactive Real Estate",
-    href: "https://treedis.com/product-by-feature/interactive-real-estate",
+    href: "/Product/Homestaging",
     icon: `${ASSETS}/home.svg`,
   },
 ];
@@ -67,124 +67,59 @@ const COLUMNS: FooterColumn[] = [
   {
     heading: "Solutions by Industry",
     links: [
-      {
-        label: "Industry 4.0",
-        href: "https://treedis.com/solutions-by-industry/industry-4-0",
-      },
-      {
-        label: "Real Estate",
-        href: "https://treedis.com/solutions-by-industry/real-estate-and-architecture",
-      },
-      {
-        label: "Museum and Galleries",
-        href: "https://treedis.com/solutions-by-industry/museums-and-galleries",
-      },
-      {
-        label: "Retail and Showrooms",
-        href: "https://treedis.com/solutions-by-industry/retail-and-showrooms",
-      },
-      {
-        label: "Education",
-        href: "https://treedis.com/solutions-by-industry/education",
-      },
-      {
-        label: "Virtual Events",
-        href: "https://treedis.com/solutions-by-industry/events",
-      },
+      { label: "Industry 4.0", href: "/Product" },
+      { label: "Real Estate", href: "/Product/Homestaging" },
+      { label: "Museum and Galleries", href: "/Product" },
+      { label: "Retail and Showrooms", href: "/Product" },
+      { label: "Education", href: "/Product" },
+      { label: "Virtual Events", href: "/Product/HubAvatar" },
     ],
   },
   {
     heading: "Solutions by Use Case",
     links: [
-      {
-        label: "Connected Workers",
-        href: "https://treedis.com/",
-        external: true,
-      },
-      {
-        label: "Immersive Training",
-        href: "https://treedis.com/solutions-by-use-case/immersive-training-onboarding",
-      },
-      {
-        label: "Marketing & Ads",
-        href: "https://treedis.com/solutions-by-use-case/marketing-and-advertising",
-      },
-      {
-        label: "Online Shopping",
-        href: "https://treedis.com/solutions-by-use-case/shopping",
-      },
-      {
-        label: "Facility Management",
-        href: "https://treedis.com/solutions-by-use-case/facilities-management",
-      },
-      {
-        label: "Indoor Navigation",
-        href: "https://treedis.com/solutions-by-use-case/indoor-navigation",
-      },
-      {
-        label: "Planning and Design",
-        href: "https://treedis.com/solutions-by-use-case/planning-and-designing",
-      },
+      { label: "Connected Workers", href: "/Product/HubAvatar" },
+      { label: "Immersive Training", href: "/Product/HubAvatar" },
+      { label: "Marketing & Ads", href: "/Product" },
+      { label: "Online Shopping", href: "/Product" },
+      { label: "Facility Management", href: "/Product" },
+      { label: "Indoor Navigation", href: "/Product/Navigation" },
+      { label: "Planning and Design", href: "/Product/CgiRendering" },
     ],
   },
   {
     heading: "Product by Feature",
     links: [
-      {
-        label: "Flows",
-        href: "https://treedis.com/product-by-feature/flows",
-      },
-      {
-        label: "Indoor Navigation",
-        href: "https://treedis.com/solutions-by-use-case/indoor-navigation",
-      },
-      {
-        label: "Digital Twin Studio",
-        href: "https://treedis.com/product-by-feature/digital-twin-studio",
-      },
-      {
-        label: "3D Editor",
-        href: "https://treedis.com/product-by-feature/3d-editor",
-      },
-      {
-        label: "CGI Rendering",
-        href: "https://treedis.com/product-by-feature/cgi-render",
-      },
-      {
-        label: "Analytics",
-        href: "https://treedis.com/product-by-feature/analytics",
-      },
+      { label: "Flows", href: "/Product/Navigation" },
+      { label: "Indoor Navigation", href: "/Product/Navigation" },
+      { label: "Digital Twin Studio", href: "/Product/Capture" },
+      { label: "3D Editor", href: "/Product/Capture" },
+      { label: "CGI Rendering", href: "/Product/CgiRendering" },
+      { label: "Analytics", href: "/Product" },
     ],
   },
   {
     heading: "Resources",
     links: [
-      { label: "Blog", href: "https://treedis.com/blog" },
-      {
-        label: "Help Center",
-        href: "https://info.treedis.com/help.center",
-        external: true,
-      },
-      {
-        label: "3D Capture Network",
-        href: "https://treedis.com/3d-tour-capture-network",
-      },
-      { label: "Case Studies", href: "https://treedis.com/case-studies" },
+      { label: "Blog", href: "/" },
+      { label: "Help Center", href: "#contact" },
+      { label: "3D Capture Network", href: "/Product/Capture" },
+      { label: "Case Studies", href: "/" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "Partnership", href: "https://treedis.com/partnership" },
-      { label: "Pricing", href: "https://treedis.com/pricing" },
+      { label: "Partnership", href: "#contact" },
+      { label: "Pricing", href: "#contact" },
     ],
   },
 ];
 
 const LEGAL_LINKS: FooterLink[] = [
-  { label: "Cookies Policy", href: "https://treedis.com/cookie-policy" },
-  { label: "Terms of Use", href: "https://treedis.com/terms-of-use" },
-  { label: "Privacy Policy", href: "https://treedis.com/privacy-policy" },
+  { label: "Cookies Policy", href: "/" },
+  { label: "Terms of Use", href: "/" },
+  { label: "Privacy Policy", href: "/" },
 ];
 
 function DiagonalArrow({ className = "" }: { className?: string }) {

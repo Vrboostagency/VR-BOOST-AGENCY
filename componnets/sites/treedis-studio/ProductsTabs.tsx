@@ -21,7 +21,7 @@ const PRODUCTS: Product[] = [
     heading: "Connect Your Workforce",
     blurb:
       "Digital twins, AR/VR, and IoT working together to keep frontline teams safer and more productive.",
-    href: "https://treedis.com/",
+    href: "/Product/HubAvatar",
     video:
       "https://static.treedis.com/website/Connected+Worker+Platform+%231+(1).mp4",
   },
@@ -31,7 +31,7 @@ const PRODUCTS: Product[] = [
     heading: "Wayfinding Simplified",
     blurb:
       "Guide visitors through any building with real-time 3D directions on web, kiosk, or AR.",
-    href: "/solutions-by-use-case/indoor-navigation",
+    href: "/Product/Navigation",
     video: "https://treedis-public.s3.eu-central-1.amazonaws.com/website/0416.mp4",
   },
   {
@@ -40,7 +40,7 @@ const PRODUCTS: Product[] = [
     heading: "Real Estate Reimagined",
     blurb:
       "Showcase properties with immersive 3D tours and visual tools that help buyers decide faster.",
-    href: "/product-by-feature/interactive-real-estate",
+    href: "/Product/Homestaging",
     video: "https://static.treedis.com/website/Copy+of+Seamless+Conversion.mp4",
   },
   {
@@ -49,7 +49,7 @@ const PRODUCTS: Product[] = [
     heading: "Bring Your Space to Life",
     blurb:
       "Turn digital twins into interactive experiences for shopping, learning, and play.",
-    href: "/product-by-feature/digital-twin-studio",
+    href: "/Product/Capture",
     video:
       "https://treedis-public.s3.eu-central-1.amazonaws.com/website/Immersive+Experiences+Solution+(1080P)+(1).mp4",
   },

@@ -14,7 +14,7 @@ export default function EditorShowcase() {
               Empower Your Digital Twin With The VR Boost Agency Editor
             </h2>
             <div className="mt-8">
-              <CtaButton href="https://my.treedis.com/admin/register" small>
+              <CtaButton href="#contact" small>
                 Start Now
               </CtaButton>
             </div>

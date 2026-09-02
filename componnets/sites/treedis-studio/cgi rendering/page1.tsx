@@ -107,6 +107,27 @@ export default function ArNavigationHowItWorks({
   const [isOpen, setIsOpen] = useState(false);
   const backdropRef = useRef<HTMLDivElement>(null);
   const modalBoxRef = useRef<HTMLDivElement>(null);
+  const playControlRef = useRef<HTMLSpanElement>(null);
+
+  useGSAP(() => {
+    if (!playControlRef.current || prefersReducedMotion()) return;
+    // Pops the play button in with a bounce; ScrollTrigger checks the
+    // element's position as soon as this runs, so it also plays on a fresh
+    // page load/refresh if the section is already on screen, not just when
+    // scrolling to it.
+    gsap.fromTo(
+      playControlRef.current,
+      { scale: 0.6, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 0.6,
+        ease: "back.out(1.7)",
+        clearProps: "transform",
+        scrollTrigger: { trigger: playControlRef.current, start: "top 85%", once: true },
+      }
+    );
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -182,11 +203,11 @@ export default function ArNavigationHowItWorks({
             <img
               src={posterSrc}
               alt="AR indoor navigation demo: a phone camera view with turn-by-turn direction bubbles and a waypoint trail leading to reception"
-              className="aspect-video w-full object-cover"
+              className="aspect-video w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               loading="lazy"
             />
             <span className="absolute inset-0 flex items-center justify-center">
-              <span className="relative flex h-16 w-16 items-center justify-center text-white transition-transform duration-300 group-hover:scale-110 md:h-[142px] md:w-[142px]">
+              <span ref={playControlRef} className="relative flex h-16 w-16 items-center justify-center text-white transition-transform duration-300 group-hover:scale-110 group-active:scale-95 md:h-[142px] md:w-[142px]">
                 <Player className="absolute inset-0 h-full w-full" />
                 <PlayIcon className="relative ml-1 h-7 w-7 md:h-14 md:w-14" />
               </span>
@@ -223,7 +244,7 @@ export default function ArNavigationHowItWorks({
           <button
             type="button"
             onClick={closeModal}
-            className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+            className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-[background-color,transform] duration-200 hover:bg-white/20 hover:rotate-90"
             aria-label="Close video"
           >
             <CloseIcon className="h-5 w-5" />

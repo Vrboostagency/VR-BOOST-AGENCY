@@ -88,7 +88,7 @@ export default function OthersProduct() {
             </div>
             <img
               src="/brand/products/images/Indoor.png"
-              className="hidden lg:block absolute right-2 -bottom-[13px] w-[302px] h-[290px] max-w-none transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1"
+              className="absolute right-0 -bottom-2 w-[130px] h-[125px] sm:right-1 sm:-bottom-2 sm:w-[190px] sm:h-[182px] lg:right-2 lg:-bottom-[13px] lg:w-[302px] lg:h-[290px] max-w-none transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1"
               alt="Indoor Navigation"
             />
             <svg
@@ -290,7 +290,7 @@ export default function OthersProduct() {
             </div>
             <img
               src="/brand/products/images/cgi.png"
-              className="hidden lg:block absolute right-[29px] -bottom-1 w-[300px] h-[288px] max-w-none transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1"
+              className="absolute right-2 -bottom-1 w-[130px] h-[125px] sm:right-3 sm:w-[190px] sm:h-[182px] lg:right-[29px] lg:w-[300px] lg:h-[288px] max-w-none transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1"
               alt="CGI"
             />
             <svg
@@ -373,7 +373,7 @@ export default function OthersProduct() {
             </svg>
             <img
               src="/brand/products/images/staging.png"
-              className="hidden lg:block absolute right-[52px] bottom-[13px] w-[438px] h-[285px] max-w-none z-10 transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1"
+              className="absolute right-2 bottom-2 w-[160px] h-[104px] sm:right-4 sm:w-[260px] sm:h-[169px] lg:right-[52px] lg:bottom-[13px] lg:w-[438px] lg:h-[285px] max-w-none z-0 transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1"
               alt="Home Staging"
             />
           </a>

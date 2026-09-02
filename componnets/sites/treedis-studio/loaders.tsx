@@ -977,21 +977,26 @@ function LoaderRow(
 {/* Loaders components imported */}
 export default function Loaders() {
   return (
-    <div className="relative w-full h-[133px] overflow-hidden">
-      <div className="tds-marquee-track flex h-full w-max">
-        <LoaderRow />
-        <LoaderRow ariaHidden />
+    <div className="relative w-full h-[72px] sm:h-[96px] md:h-[133px] overflow-hidden flex items-center justify-center">
+      {/* Inner strip keeps its original fixed-pixel layout (logos are
+          absolutely positioned in px) and is scaled down as one unit on
+          mobile/tablet, instead of stretching or cropping it. */}
+      <div className="relative h-[133px] w-full origin-center scale-[0.54] sm:scale-[0.72] md:scale-100">
+        <div className="tds-marquee-track flex h-full w-max">
+          <LoaderRow />
+          <LoaderRow ariaHidden />
+        </div>
+        <svg
+          width="1920"
+          height="133"
+          viewBox="0 0 1920 133"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="pointer-events-none absolute -left-[19px] top-px h-full w-[1958px]"
+        >
+          <path d="M1939 0.5H-19V132.5H1939V0.5Z" stroke="#EDEFF8" />
+        </svg>
       </div>
-      <svg
-        width="1920"
-        height="133"
-        viewBox="0 0 1920 133"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="pointer-events-none absolute -left-[19px] top-px h-full w-[1958px]"
-      >
-        <path d="M1939 0.5H-19V132.5H1939V0.5Z" stroke="#EDEFF8" />
-      </svg>
     </div>
   );
 }

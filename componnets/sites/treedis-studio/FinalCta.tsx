@@ -20,7 +20,7 @@ export default function FinalCta() {
             </h2>
           </Reveal>
           <Reveal delay={200} className="mt-10">
-            <CtaButton href="https://my.treedis.com/admin/register">
+            <CtaButton href="#contact">
               Start For Today
             </CtaButton>
           </Reveal>

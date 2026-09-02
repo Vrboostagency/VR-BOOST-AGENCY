@@ -20,11 +20,12 @@ export default function Frame({
     <ClipReveal
       direction="up"
       duration={1.3}
-      className="relative w-full h-[340px] sm:h-[420px] md:h-[500px] lg:h-auto lg:aspect-[1920/746] overflow-hidden bg-[#0A1020]"
+      className="relative w-full aspect-[1920/746] overflow-hidden bg-[#0A1020]"
     >
-      {/* Always true 1920:746 proportion, regardless of the outer box's shape,
-          so the percentage-positioned CTA links below stay aligned with the
-          artwork even when the outer box is cropped taller on mobile. */}
+      {/* Outer box is now locked to the true 1920:746 proportion at every
+          breakpoint, so this inner layer always fills it exactly with no
+          cropping and the percentage-positioned CTA links below stay aligned
+          with the artwork. */}
       <div className="absolute left-0 top-0 h-full aspect-[1920/746]">
       <svg
         width="1920"
