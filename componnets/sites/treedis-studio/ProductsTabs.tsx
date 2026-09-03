@@ -145,17 +145,23 @@ export default function ProductsTabs() {
               </a>
             </div>
 
-            {/* Only the active tab's video is rendered/loaded */}
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className="tds-tab-media w-full rounded-2xl"
-            >
-              <source src={active.video} type="video/mp4" />
-            </video>
+            {/* Only the active tab's video is rendered/loaded. Fixed aspect-ratio
+                box keeps it from jumping in height between tabs/breakpoints, and
+                key={active.id} forces a real remount so the new clip actually loads
+                on tab switch instead of getting stuck on the first one. */}
+            <div className="tds-tab-media aspect-video w-full overflow-hidden rounded-2xl bg-black/5">
+              <video
+                key={active.id}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-cover"
+              >
+                <source src={active.video} type="video/mp4" />
+              </video>
+            </div>
           </div>
         </TabPanel>
       </div>

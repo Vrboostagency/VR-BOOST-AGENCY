@@ -13,6 +13,16 @@ export default function Player({ className = "" }: { className?: string }) {
   useGSAP(() => {
     const el = ref.current;
     if (!el || prefersReducedMotion()) return;
+
+    // Both loops run forever (repeat: -1) — gate them on visibility so they
+    // stop costing frames once scrolled out of view.
+    const scrollTrigger = {
+      trigger: el,
+      start: "top bottom",
+      end: "bottom top",
+      toggleActions: "play pause resume pause",
+    } as const;
+
     gsap.to(el, {
       scale: 1.05,
       duration: 1.6,
@@ -20,6 +30,7 @@ export default function Player({ className = "" }: { className?: string }) {
       repeat: -1,
       yoyo: true,
       transformOrigin: "center",
+      scrollTrigger,
     });
 
     if (ringRef.current) {
@@ -32,6 +43,7 @@ export default function Player({ className = "" }: { className?: string }) {
           duration: 1.8,
           ease: "power2.out",
           repeat: -1,
+          scrollTrigger,
         }
       );
     }

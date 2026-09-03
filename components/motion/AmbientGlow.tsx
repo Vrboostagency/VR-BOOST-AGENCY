@@ -23,6 +23,9 @@ export default function AmbientGlow({
   useGSAP(() => {
     const el = ref.current;
     if (!el || prefersReducedMotion()) return;
+    // Runs forever (repeat: -1), so gate it on visibility — otherwise every
+    // glow on the page keeps animating, and thus keeps compositing, even
+    // while scrolled far out of view.
     gsap.to(el, {
       scale: 1.08,
       opacity: 0.85,
@@ -32,6 +35,12 @@ export default function AmbientGlow({
       ease: "sine.inOut",
       repeat: -1,
       yoyo: true,
+      scrollTrigger: {
+        trigger: el,
+        start: "top bottom",
+        end: "bottom top",
+        toggleActions: "play pause resume pause",
+      },
     });
   });
 

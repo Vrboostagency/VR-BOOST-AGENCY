@@ -3,7 +3,7 @@
 import { useEffect, type ReactNode } from "react";
 import { ReactLenis, useLenis } from "lenis/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { prefersReducedMotion } from "./reduced-motion";
+import { prefersReducedMotion, isTouchDevice } from "./reduced-motion";
 
 /** Ticks GSAP's ScrollTrigger off Lenis's raf loop so scroll-driven animation stays in sync. */
 function LenisScrollTriggerBridge() {
@@ -47,9 +47,15 @@ function LenisScrollTriggerBridge() {
   return null;
 }
 
-/** Site-wide smooth scroll. Falls back to native scroll for reduced-motion users. */
+/** Site-wide smooth scroll. Falls back to native scroll for reduced-motion and touch
+ *  (phone/tablet) users — Lenis's wheel/raf emulation only fights native touch
+ *  momentum scrolling there and is the main source of mobile scroll jank. */
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   const reduced = prefersReducedMotion();
+
+  if (isTouchDevice()) {
+    return <>{children}</>;
+  }
 
   return (
     <ReactLenis

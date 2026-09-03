@@ -12,9 +12,9 @@ const CONTACT_ASSETS = "/sites/treedis-studio/contact";
 const SOCIAL_ASSETS = "/sites/treedis-studio/social";
 
 const CONTACT_ROWS: { icon: string; label: string; value: string; href?: string }[] = [
-  { icon: `${CONTACT_ASSETS}/Overlay.png`, label: "Direct Line", value: "+1 (800) SCAN-01M", href: "tel:+18007226601" },
-  { icon: `${CONTACT_ASSETS}/Overlay2.png`, label: "Email Us", value: "capture@scandimension.com", href: "mailto:capture@scandimension.com" },
-  { icon: `${CONTACT_ASSETS}/Overlay3.png`, label: "HQ", value: "452 Innovation Way, Austin, TX" },
+  { icon: `${CONTACT_ASSETS}/Overlay.png`, label: "Direct Line", value: "+212 60000000", href: "tel:+21260000000" },
+  { icon: `${CONTACT_ASSETS}/Overlay2.png`, label: "Email Us", value: "Contact@vrboostagency.com", href: "mailto:Contact@vrboostagency.com" },
+  { icon: `${CONTACT_ASSETS}/Overlay3.png`, label: "HQ", value: "Casablanca, Maroc" },
 ];
 
 const SOCIALS: { label: string; href: string; icon: string }[] = [
@@ -65,7 +65,7 @@ export default function Connected() {
             drift={{ x: 14, y: 16 }}
           />
 
-          <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-10">
+          <div className="relative grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-10">
             {/* Left: copy + contact details */}
             <Reveal className="flex flex-col justify-center" y={32}>
               <div>

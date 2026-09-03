@@ -80,7 +80,7 @@ const LEGAL_LINKS: { label: string; href: string }[] = [
 const ASSETS = "/sites/treedis-studio/social";
 
 const SOCIALS: { label: string; href: string; icon: string }[] = [
-  { label: "Facebook", href: "", icon: `${ASSETS}/facebook.png` },
+  { label: "Facebook", href: "https://facebook.com", icon: `${ASSETS}/facebook.png` },
   { label: "X", href: "https://x.com", icon: `${ASSETS}/twitter.png` },
   { label: "LinkedIn", href: "https://linkedin.com", icon: `${ASSETS}/linkedin.png` },
 ];
